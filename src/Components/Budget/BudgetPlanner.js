@@ -15,7 +15,7 @@ const BudgetPlanner = (props) => {
 
     useEffect(() => {
         handleSessionUser()
-    }, [user.id])
+    }, [])
 
     const handleSessionUser = () => {
         axios.get('/auth/session-user')
