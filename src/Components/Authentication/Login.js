@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {logo} from './placeholder_logo.png'
-import {Image, Input, Button} from './AuthenticationStyles';
+import logo from './assets/placeholder_logo.png';
+import {Image, H4, Input, Button} from './AuthenticationStyles';
 
 const Login = (props) => {
     const [email, setEmail] = useState('')
@@ -16,7 +16,8 @@ const Login = (props) => {
 
     return(
         <div>
-            <Image />
+            <Image src={logo} alt='Company Logo' />
+            <H4>Budget</H4>
             <Input 
                 value={email}
                 placeholder='Email'

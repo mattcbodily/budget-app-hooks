@@ -1,17 +1,19 @@
 import styled from 'styled-components';
-import {logo} from './placeholder_logo.png';
 
-export const Image = styled.img.attrs({
-    src: {logo},
-    alt: 'Company Logo'
-})`
-    height: 300px;
-    width: 300px;
+export const Image = styled.img`
+    height: 125px;
+    width: 125px;
+    margin-top: 100px;
+`
+export const H4 = styled.h4`
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: 300;
 `
 
 export const Input = styled.input`
     height: 45px;
-    width: 300px;
+    width: 295px;
     border: none;
     border-bottom: 1px solid lightgray;
     font-size: 15px;
@@ -25,7 +27,7 @@ export const Button = styled.button`
     color: white;
     font-size: 17px;
     border: none;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-bottom: 10px;
     border-radius: 30px;
 `
