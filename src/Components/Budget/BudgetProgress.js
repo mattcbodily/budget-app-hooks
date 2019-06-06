@@ -16,7 +16,7 @@ const BudgetProgress = (props) => {
 
     useEffect(() => {
         handleSessionUser()
-    }, [])
+    }, [user.id])
 
     useEffect(() => {
         handleExpenseTotals()
@@ -43,7 +43,6 @@ const BudgetProgress = (props) => {
         .then((res) => {
             setExpenses(res.data)
         })
-        // handleExpenseTotals();
     }
 
     const handleExpenseTotals = () => {

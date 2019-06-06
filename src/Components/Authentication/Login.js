@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import {logo} from './placeholder_logo.png'
+import {Image, Input, Button} from './AuthenticationStyles';
 
 const Login = (props) => {
     const [email, setEmail] = useState('')
@@ -14,18 +16,19 @@ const Login = (props) => {
 
     return(
         <div>
-            <input 
+            <Image />
+            <Input 
                 value={email}
                 placeholder='Email'
                 maxLength='40'
                 onChange={e => setEmail(e.target.value)} />
-            <input 
+            <Input 
                 value={password}
                 type='password'
                 placeholder='Password'
                 maxLength='40'
                 onChange={e => setPassword(e.target.value)} />
-            <button onClick={handleLogin}>Login</button>
+            <Button onClick={handleLogin}>Login</Button>
         </div>
     )
 }

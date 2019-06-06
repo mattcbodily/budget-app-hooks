@@ -22,7 +22,7 @@ const ExpenseModal = (props) => {
         }
         axios.post('/api/expense', expenseObj)
         .then(res => {
-            props.expenses();
+            props.expenses(props.budget.budget_id);
             props.toggle();
         })
     }

@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
+import {
+    Input,
+    Button
+} from './AuthenticationStyles';
+
 const Register = (props) => {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
@@ -20,29 +25,29 @@ const Register = (props) => {
     return(
         <div>
             <h3>Budget</h3>
-            <input 
+            <Input 
                 value={email}
                 placeholder='Email'
                 maxLength='40'
                 onChange={e => setEmail(e.target.value)}/>
-            <input 
+            <Input 
                 value={username}
                 placeholder='Username'
                 maxLength='20'
                 onChange={e => setUsername(e.target.value)}/>
-            <input
+            <Input
                 value={password} 
                 placeholder='Password'
                 maxLength='40'
                 type='password'
                 onChange={e => setPassword(e.target.value)}/>
-            <input
+            <Input
                 value={verPassword} 
                 placeholder='Verify Password'
                 maxLength='40'
                 type='password'
                 onChange={e => setVerPassword(e.target.value)}/>
-            <button onClick={handleRegister}>Register</button>
+            <Button onClick={handleRegister}>Register</Button>
         </div>
     )
 }
