@@ -5,6 +5,13 @@ export const Image = styled.img`
     width: 125px;
     margin-top: 100px;
 `
+
+export const RegisterImage = styled.img`
+    height: 125px;
+    width: 125px;
+    margin-top: 75px;
+`
+
 export const H4 = styled.h4`
     margin-top: 10px;
     font-size: 25px;

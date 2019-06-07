@@ -1,10 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-
-import {
-    Input,
-    Button
-} from './AuthenticationStyles';
+import logo from './assets/placeholder_logo.png';
+import {RegisterImage, H4, Input, Button} from './AuthenticationStyles';
 
 const Register = (props) => {
     const [email, setEmail] = useState('');
@@ -24,7 +21,8 @@ const Register = (props) => {
 
     return(
         <div>
-            <h3>Budget</h3>
+            <RegisterImage src={logo} alt='Company Logo' />
+            <H4>Budget</H4>
             <Input 
                 value={email}
                 placeholder='Email'
