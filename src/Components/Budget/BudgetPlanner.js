@@ -5,7 +5,21 @@ import {Doughnut} from 'react-chartjs-2';
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faShoppingBag, faGasPump, faTicketAlt, faWineGlassAlt, faCoins} from '@fortawesome/free-solid-svg-icons';
-import {H4, H5, DollarSign, Input, Button, BudgetInfo, Section, ExpenseSplits, ChartContainer} from './BudgetStyles';
+import {H4, 
+        H5, 
+        DollarSign, 
+        Input, 
+        Button, 
+        BudgetInfo, 
+        Section, 
+        ExpenseSplits, 
+        ChartContainer,
+        ExpenseContainer,
+        ShoppingContainer,
+        GasContainer,
+        TicketContainer,
+        GlassContainer,
+        CoinsContainer} from './BudgetStyles';
 library.add(faShoppingBag, faGasPump, faTicketAlt, faWineGlassAlt, faCoins)
 
 const BudgetPlanner = (props) => {
@@ -76,43 +90,62 @@ const BudgetPlanner = (props) => {
                 return (
                     <div>
                         <H5>Step Two: Split Your Budget</H5>
-                        <BudgetInfo>Your budget: ${budget}</BudgetInfo>
-                        <BudgetInfo>Budget left: ${(budget - groceries - gas - entertainment - restaurants - other)}</BudgetInfo>
+                        <BudgetInfo>${(budget - groceries - gas - entertainment - restaurants - other)}</BudgetInfo>
                         <Section>
-                            <FontAwesomeIcon icon='shopping-bag' style={{fontSize: '18px', color: '#00E5C5'}}/>
-                            <ExpenseSplits>Groceries</ExpenseSplits>
+                            <ExpenseContainer>
+                                <ShoppingContainer>
+                                    <FontAwesomeIcon icon='shopping-bag' style={{fontSize: '20px', color: '#00E5C5'}}/>
+                                </ShoppingContainer>
+                                <ExpenseSplits>Groceries</ExpenseSplits>
+                            </ExpenseContainer>
                             <Input 
                                 value={groceries}
                                 maxLength='20'
                                 onChange={e => setGroceries(e.target.value)}/>
                         </Section>
                         <Section>
-                            <FontAwesomeIcon icon='gas-pump' style={{fontSize: '18px', color: '#00E55B'}}/>
-                            <ExpenseSplits>Gas</ExpenseSplits>
+                            <ExpenseContainer>
+                                <GasContainer>
+                                    <FontAwesomeIcon icon='gas-pump' style={{fontSize: '18px', color: '#00E55B'}}/>
+                                </GasContainer>
+                                <ExpenseSplits>Gas</ExpenseSplits>
+                            </ExpenseContainer>
                             <Input 
                                 value={gas}
                                 maxLength='20'
                                 onChange={e => setGas(e.target.value)}/>
                         </Section>
                         <Section>
-                        <FontAwesomeIcon icon='ticket-alt' style={{fontSize: '18px', color: '#FFAB12'}}/>
-                            <ExpenseSplits>Entertainment</ExpenseSplits>
+                            <ExpenseContainer>
+                                <TicketContainer>
+                                    <FontAwesomeIcon icon='ticket-alt' style={{fontSize: '18px', color: '#FFAB12'}}/>
+                                </TicketContainer>
+                                <ExpenseSplits>Entertainment</ExpenseSplits>
+                            </ExpenseContainer>
                             <Input 
                                 value={entertainment}
                                 maxLength='20'
                                 onChange={e => setEntertainment(e.target.value)}/>
                         </Section>
                         <Section>
-                        <FontAwesomeIcon icon='wine-glass-alt' style={{fontSize: '18px', color: '#FF247B'}}/>
-                            <ExpenseSplits>Restaurants</ExpenseSplits>
+                            <ExpenseContainer>
+                                <GlassContainer>
+                                    <FontAwesomeIcon icon='wine-glass-alt' style={{fontSize: '18px', color: '#FF247B'}}/>
+                                </GlassContainer>
+                                <ExpenseSplits>Restaurants</ExpenseSplits>
+                            </ExpenseContainer>
                             <Input 
                                 value={restaurants}
                                 maxLength='20'
                                 onChange={e => setRestaurants(e.target.value)}/>
                         </Section>
                         <Section>
-                            <FontAwesomeIcon icon='coins' style={{fontSize: '18px', color: '#6600E4'}}/>
-                            <ExpenseSplits>Other</ExpenseSplits>
+                            <ExpenseContainer>
+                                <CoinsContainer>
+                                    <FontAwesomeIcon icon='coins' style={{fontSize: '18px', color: '#6600E4'}}/>
+                                </CoinsContainer>
+                                <ExpenseSplits>Other</ExpenseSplits>
+                            </ExpenseContainer>
                             <Input 
                                 value={other}
                                 maxLength='20'
