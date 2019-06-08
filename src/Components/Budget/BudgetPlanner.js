@@ -7,7 +7,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faShoppingBag, faGasPump, faTicketAlt, faWineGlassAlt, faCoins} from '@fortawesome/free-solid-svg-icons';
 import {H4, 
         H5, 
-        DollarSign, 
+        DollarSign,
+        ExpenseDollar, 
         Input, 
         Button, 
         BudgetInfo, 
@@ -19,7 +20,8 @@ import {H4,
         GasContainer,
         TicketContainer,
         GlassContainer,
-        CoinsContainer} from './BudgetStyles';
+        CoinsContainer,
+        ExpenseButton} from './BudgetStyles';
 library.add(faShoppingBag, faGasPump, faTicketAlt, faWineGlassAlt, faCoins)
 
 const BudgetPlanner = (props) => {
@@ -98,10 +100,12 @@ const BudgetPlanner = (props) => {
                                 </ShoppingContainer>
                                 <ExpenseSplits>Groceries</ExpenseSplits>
                             </ExpenseContainer>
+                            <ExpenseDollar>$
                             <Input 
                                 value={groceries}
                                 maxLength='20'
                                 onChange={e => setGroceries(e.target.value)}/>
+                            </ExpenseDollar>
                         </Section>
                         <Section>
                             <ExpenseContainer>
@@ -110,10 +114,12 @@ const BudgetPlanner = (props) => {
                                 </GasContainer>
                                 <ExpenseSplits>Gas</ExpenseSplits>
                             </ExpenseContainer>
+                            <ExpenseDollar>$
                             <Input 
                                 value={gas}
                                 maxLength='20'
                                 onChange={e => setGas(e.target.value)}/>
+                            </ExpenseDollar>
                         </Section>
                         <Section>
                             <ExpenseContainer>
@@ -122,10 +128,12 @@ const BudgetPlanner = (props) => {
                                 </TicketContainer>
                                 <ExpenseSplits>Entertainment</ExpenseSplits>
                             </ExpenseContainer>
+                            <ExpenseDollar>$
                             <Input 
                                 value={entertainment}
                                 maxLength='20'
                                 onChange={e => setEntertainment(e.target.value)}/>
+                            </ExpenseDollar>
                         </Section>
                         <Section>
                             <ExpenseContainer>
@@ -134,10 +142,12 @@ const BudgetPlanner = (props) => {
                                 </GlassContainer>
                                 <ExpenseSplits>Restaurants</ExpenseSplits>
                             </ExpenseContainer>
+                            <ExpenseDollar>$
                             <Input 
                                 value={restaurants}
                                 maxLength='20'
                                 onChange={e => setRestaurants(e.target.value)}/>
+                            </ExpenseDollar>
                         </Section>
                         <Section>
                             <ExpenseContainer>
@@ -146,13 +156,15 @@ const BudgetPlanner = (props) => {
                                 </CoinsContainer>
                                 <ExpenseSplits>Other</ExpenseSplits>
                             </ExpenseContainer>
+                            <ExpenseDollar>$
                             <Input 
                                 value={other}
                                 maxLength='20'
                                 onChange={e => setOther(e.target.value)}/>
+                            </ExpenseDollar>
                         </Section>
-                        <Button onClick={decrementStep}>Back</Button>
-                        <Link to='budget'><Button onClick={addMonthlyBudget}>Submit</Button></Link>
+                        <ExpenseButton onClick={decrementStep}>Back</ExpenseButton>
+                        <Link to='budget'><ExpenseButton onClick={addMonthlyBudget}>Submit</ExpenseButton></Link>
                     </div>
                 )
             default:
@@ -177,7 +189,7 @@ const BudgetPlanner = (props) => {
                     options={{
                         responsive: true,
                         maintainAspectRatio: false,
-                        cutoutPercentage: 58
+                        cutoutPercentage: 60
                     }} />
             </ChartContainer>
             {showStep()}

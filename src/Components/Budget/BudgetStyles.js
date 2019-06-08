@@ -43,6 +43,11 @@ export const DollarSign = styled.p`
     font-weight: 300;
 `
 
+export const ExpenseDollar = styled.span`
+    font-size: 18px;
+    font-weight: 300;
+`
+
 export const Input = styled.input`
     height: 45px;
     width: 170px;
@@ -62,6 +67,17 @@ export const Button = styled.button`
     font-size: 17px;
     border: none;
     margin-top: 0px;
+    border-radius: 30px;
+`
+
+export const ExpenseButton = styled.button`
+    height: 40px;
+    width: 155px;
+    background-image:linear-gradient(to right, #8AC1FF, #0078FF);
+    color: white;
+    font-size: 17px;
+    border: none;
+    margin: 15px 10px;
     border-radius: 30px;
 `
 
