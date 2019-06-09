@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import {Modal} from './ModalStyles';
 
 const ExpenseModal = (props) => {
     const [category, setCategory] = useState('groceries')
@@ -32,7 +33,7 @@ const ExpenseModal = (props) => {
     }
 
     return(
-        <div>
+        <Modal>
         <h3>Add an Expense</h3>
         <h5>Expense Category</h5>
         <select onChange={handleCategory}>
@@ -53,7 +54,7 @@ const ExpenseModal = (props) => {
             maxLength='20'
             onChange={e => setExpenseAmount(e.target.value)}/>
         <button onClick={handleAddExpense}>Add Expense</button>
-    </div>
+    </Modal>
     )
 }
 

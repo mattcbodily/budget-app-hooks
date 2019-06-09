@@ -2,6 +2,11 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {Doughnut} from 'react-chartjs-2';
 import ExpenseModal from './ExpenseModal';
+import {H4, H6, ChartsContainer, ChartsWrapper, ButtonContainer} from './ProgressStyles';
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPlus} from '@fortawesome/free-solid-svg-icons';
+library.add(faPlus)
 
 const BudgetProgress = (props) => {
     const [user, setUser] = useState({})
@@ -74,34 +79,127 @@ const BudgetProgress = (props) => {
     
     return (
         <div>
-        <button onClick={handleModalToggle}>Add Expense</button>
-        {showModal
-        ? <ExpenseModal 
-                budget={budget}
-                toggle={handleModalToggle}
-                expenses={handleGetUserExpenses}/>
-        : null}
-        <div>
-            <Doughnut 
-                data={{
-                    labels: ['Remaining', 'Spent'],
-                    datasets: [{
-                        label: 'Groceries',
-                        backgroundColor: ['#FF4242', '#FFAAAA'],
-                        data: [budgetRemaining, totalExpenses]
-                    }]
-            }}/>
-            <Doughnut 
-                data={{
-                    labels: ['Remaining', 'Spent'],
-                    datasets: [{
-                        label: 'Groceries',
-                        backgroundColor: ['#FF4242', '#FFAAAA'],
-                        data: [(budget.groceries - groceriesTotal), groceriesTotal]
-                    }]
-                }}/>
+            <H4>{user.username}'s Progress</H4>
+            <ChartsContainer>
+                <ChartsWrapper>
+                    <H6>All Budget</H6>
+                    <Doughnut 
+                        height={100}
+                        width={100}
+                        data={{
+                            datasets: [{
+                                label: 'Budget',
+                                backgroundColor: ['#FF4242', '#FFAAAA'],
+                                data: [budgetRemaining, totalExpenses]
+                            }]
+                        }}
+                        options={{
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            cutoutPercentage: 60
+                    }}/>
+                </ChartsWrapper>
+                <ChartsWrapper>
+                    <H6>Groceries</H6>
+                    <Doughnut
+                        height={1}
+                        width={1} 
+                        data={{
+                            datasets: [{
+                                label: 'Groceries',
+                                backgroundColor: ['#FF4242', '#FFAAAA'],
+                                data: [(budget.groceries - groceriesTotal), groceriesTotal]
+                            }]
+                        }}
+                        options={{
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            cutoutPercentage: 60
+                    }}/>
+                </ChartsWrapper>
+                <ChartsWrapper>
+                    <H6>Gas</H6>
+                    <Doughnut
+                        height={1}
+                        width={1} 
+                        data={{
+                            datasets: [{
+                                label: 'Gas',
+                                backgroundColor: ['#FF4242', '#FFAAAA'],
+                                data: [(budget.gas - gasTotal), gasTotal]
+                            }]
+                        }}
+                        options={{
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            cutoutPercentage: 60
+                    }}/>
+                </ChartsWrapper>
+                <ChartsWrapper>
+                    <H6>Entertainment</H6>
+                    <Doughnut
+                        height={1}
+                        width={1} 
+                        data={{
+                            datasets: [{
+                                label: 'Entertainment',
+                                backgroundColor: ['#FF4242', '#FFAAAA'],
+                                data: [(budget.entertainment - entertainmentTotal), entertainmentTotal]
+                            }]
+                        }}
+                        options={{
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            cutoutPercentage: 60
+                    }}/>
+                </ChartsWrapper>
+                <ChartsWrapper>
+                    <H6>Restaurants</H6>
+                    <Doughnut
+                        height={1}
+                        width={1} 
+                        data={{
+                            datasets: [{
+                                label: 'Restaurants',
+                                backgroundColor: ['#FF4242', '#FFAAAA'],
+                                data: [(budget.restaurants - restaurantsTotal), restaurantsTotal]
+                            }]
+                        }}
+                        options={{
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            cutoutPercentage: 60
+                    }}/>
+                </ChartsWrapper>
+                <ChartsWrapper>
+                    <H6>Other</H6>
+                    <Doughnut
+                        height={1}
+                        width={1} 
+                        data={{
+                            datasets: [{
+                                label: 'Other',
+                                backgroundColor: ['#FF4242', '#FFAAAA'],
+                                data: [(budget.other - otherTotal), otherTotal]
+                            }]
+                        }}
+                        options={{
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            cutoutPercentage: 60
+                    }}/>
+                </ChartsWrapper>
+            </ChartsContainer>
+            <ButtonContainer>
+                <FontAwesomeIcon icon='plus' onClick={handleModalToggle} style={{color: 'white', fontSize: '30px'}}/>
+            </ButtonContainer>
+            {showModal
+            ? <ExpenseModal 
+                    budget={budget}
+                    toggle={handleModalToggle}
+                    expenses={handleGetUserExpenses}/>
+            : null}
         </div>
-    </div>
     )
 }
 
