@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {Doughnut} from 'react-chartjs-2';
 import ExpenseModal from './ExpenseModal';
-import {H4, H6, ChartsContainer, ChartsWrapper, ButtonContainer} from './ProgressStyles';
+import {H4, H6, ChartsContainer, ChartsWrapper, ButtonContainer, BudgetNumber, GroceryNumber, GasNumber, ENumber, RestaurantsNumber, OtherNumber} from './ProgressStyles';
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
@@ -83,6 +83,7 @@ const BudgetProgress = (props) => {
             <ChartsContainer>
                 <ChartsWrapper>
                     <H6>All Budget</H6>
+                    <BudgetNumber>${budgetRemaining}</BudgetNumber>
                     <Doughnut 
                         height={100}
                         width={100}
@@ -101,13 +102,14 @@ const BudgetProgress = (props) => {
                 </ChartsWrapper>
                 <ChartsWrapper>
                     <H6>Groceries</H6>
+                    <GroceryNumber>${budget.groceries - groceriesTotal}</GroceryNumber>
                     <Doughnut
                         height={1}
                         width={1} 
                         data={{
                             datasets: [{
                                 label: 'Groceries',
-                                backgroundColor: ['#FF4242', '#FFAAAA'],
+                                backgroundColor: ['#FF8A8A', '#DB0000'],
                                 data: [(budget.groceries - groceriesTotal), groceriesTotal]
                             }]
                         }}
@@ -119,13 +121,14 @@ const BudgetProgress = (props) => {
                 </ChartsWrapper>
                 <ChartsWrapper>
                     <H6>Gas</H6>
+                    <GasNumber>${budget.gas - gasTotal}</GasNumber>
                     <Doughnut
                         height={1}
                         width={1} 
                         data={{
                             datasets: [{
                                 label: 'Gas',
-                                backgroundColor: ['#FF4242', '#FFAAAA'],
+                                backgroundColor: ['#7EC7E6', '#00A4E7'],
                                 data: [(budget.gas - gasTotal), gasTotal]
                             }]
                         }}
@@ -137,13 +140,14 @@ const BudgetProgress = (props) => {
                 </ChartsWrapper>
                 <ChartsWrapper>
                     <H6>Entertainment</H6>
+                    <ENumber>${budget.entertainment - entertainmentTotal}</ENumber>
                     <Doughnut
                         height={1}
                         width={1} 
                         data={{
                             datasets: [{
                                 label: 'Entertainment',
-                                backgroundColor: ['#FF4242', '#FFAAAA'],
+                                backgroundColor: ['#BFE98B', '#82EA00'],
                                 data: [(budget.entertainment - entertainmentTotal), entertainmentTotal]
                             }]
                         }}
@@ -155,13 +159,14 @@ const BudgetProgress = (props) => {
                 </ChartsWrapper>
                 <ChartsWrapper>
                     <H6>Restaurants</H6>
+                    <RestaurantsNumber>${budget.restaurants - restaurantsTotal}</RestaurantsNumber>
                     <Doughnut
                         height={1}
                         width={1} 
                         data={{
                             datasets: [{
                                 label: 'Restaurants',
-                                backgroundColor: ['#FF4242', '#FFAAAA'],
+                                backgroundColor: ['#FFE5B0', '#FFC247'],
                                 data: [(budget.restaurants - restaurantsTotal), restaurantsTotal]
                             }]
                         }}
@@ -173,13 +178,14 @@ const BudgetProgress = (props) => {
                 </ChartsWrapper>
                 <ChartsWrapper>
                     <H6>Other</H6>
+                    <OtherNumber>${budget.other - otherTotal}</OtherNumber>
                     <Doughnut
                         height={1}
                         width={1} 
                         data={{
                             datasets: [{
                                 label: 'Other',
-                                backgroundColor: ['#FF4242', '#FFAAAA'],
+                                backgroundColor: ['#E3B0FF', '#C55BFF'],
                                 data: [(budget.other - otherTotal), otherTotal]
                             }]
                         }}

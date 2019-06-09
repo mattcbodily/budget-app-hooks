@@ -34,3 +34,51 @@ export const ButtonContainer = styled.div`
     padding-left: 1px;
     display: inline-block;
 `
+
+export const BudgetNumber = styled.span`
+    font-size: 17px;
+    font-weight: 300;
+    position: fixed;
+    top: 160px;
+    left: 65px;
+`
+
+export const GroceryNumber = styled.span`
+    font-size: 17px;
+    font-weight: 300;
+    position: fixed;
+    top: 160px;
+    right: 70px;
+`
+
+export const GasNumber = styled.span`
+    font-size: 17px;
+    font-weight: 300;
+    position: fixed;
+    top: 325px;
+    left: 70px;
+`
+
+export const ENumber = styled.span`
+    font-size: 17px;
+    font-weight: 300;
+    position: fixed;
+    top: 325px;
+    right: 70px;
+`
+
+export const RestaurantsNumber = styled.span`
+    font-size: 17px;
+    font-weight: 300;
+    position: fixed;
+    top: 490px;
+    left: 70px;
+`
+
+export const OtherNumber = styled.span`
+    font-size: 17px;
+    font-weight: 300;
+    position: fixed;
+    top: 490px;
+    right: 70px;
+`

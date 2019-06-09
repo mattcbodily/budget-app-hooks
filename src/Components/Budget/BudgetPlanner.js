@@ -96,7 +96,7 @@ const BudgetPlanner = (props) => {
                         <Section>
                             <ExpenseContainer>
                                 <ShoppingContainer>
-                                    <FontAwesomeIcon icon='shopping-bag' style={{fontSize: '20px', color: '#00E5C5'}}/>
+                                    <FontAwesomeIcon icon='shopping-bag' style={{fontSize: '20px', color: '#DB0000'}}/>
                                 </ShoppingContainer>
                                 <ExpenseSplits>Groceries</ExpenseSplits>
                             </ExpenseContainer>
@@ -110,7 +110,7 @@ const BudgetPlanner = (props) => {
                         <Section>
                             <ExpenseContainer>
                                 <GasContainer>
-                                    <FontAwesomeIcon icon='gas-pump' style={{fontSize: '18px', color: '#00E55B'}}/>
+                                    <FontAwesomeIcon icon='gas-pump' style={{fontSize: '18px', color: '#00A4E7'}}/>
                                 </GasContainer>
                                 <ExpenseSplits>Gas</ExpenseSplits>
                             </ExpenseContainer>
@@ -124,7 +124,7 @@ const BudgetPlanner = (props) => {
                         <Section>
                             <ExpenseContainer>
                                 <TicketContainer>
-                                    <FontAwesomeIcon icon='ticket-alt' style={{fontSize: '18px', color: '#FFAB12'}}/>
+                                    <FontAwesomeIcon icon='ticket-alt' style={{fontSize: '18px', color: '#82EA00'}}/>
                                 </TicketContainer>
                                 <ExpenseSplits>Entertainment</ExpenseSplits>
                             </ExpenseContainer>
@@ -138,7 +138,7 @@ const BudgetPlanner = (props) => {
                         <Section>
                             <ExpenseContainer>
                                 <GlassContainer>
-                                    <FontAwesomeIcon icon='wine-glass-alt' style={{fontSize: '18px', color: '#FF247B'}}/>
+                                    <FontAwesomeIcon icon='wine-glass-alt' style={{fontSize: '18px', color: '#FFC247'}}/>
                                 </GlassContainer>
                                 <ExpenseSplits>Restaurants</ExpenseSplits>
                             </ExpenseContainer>
@@ -152,7 +152,7 @@ const BudgetPlanner = (props) => {
                         <Section>
                             <ExpenseContainer>
                                 <CoinsContainer>
-                                    <FontAwesomeIcon icon='coins' style={{fontSize: '18px', color: '#6600E4'}}/>
+                                    <FontAwesomeIcon icon='coins' style={{fontSize: '18px', color: '#C55BFF'}}/>
                                 </CoinsContainer>
                                 <ExpenseSplits>Other</ExpenseSplits>
                             </ExpenseContainer>
@@ -181,8 +181,7 @@ const BudgetPlanner = (props) => {
                     width={200}
                     data={{
                         datasets: [{
-                            backgroundColor: ['#46AEFF', '#00E5C5', '#00E55B', '#FFAB12', '#FF247B', '#6600E4'],
-                            borderColor: '#000000',
+                            backgroundColor: ['#F1F1F1', '#DB0000', '#00A4E7', '#82EA00', '#FFC247', '#C55BFF'],
                             data: [parseInt(budgetRemaining), parseInt(groceries), parseInt(gas), parseInt(entertainment), parseInt(restaurants), parseInt(other)]
                         }]    
                     }}

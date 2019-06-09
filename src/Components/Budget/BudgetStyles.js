@@ -93,7 +93,7 @@ export const ShoppingContainer = styled.div`
     height: 30px;
     width: 30px;
     border-radius: 8px;
-    border: 1px solid #00E5C5;
+    border: 1px solid #DB0000;
     box-sizing: border-box;
     padding-top: 3px;
     margin: 0px;
@@ -104,7 +104,7 @@ export const GasContainer = styled.div`
     height: 30px;
     width: 30px;
     border-radius: 8px;
-    border: 1px solid #00E55B;
+    border: 1px solid #00A4E7;
     box-sizing: border-box;
     padding-top: 5px;
     padding-left: 2px;
@@ -116,7 +116,7 @@ export const TicketContainer = styled.div`
     height: 30px;
     width: 30px;
     border-radius: 8px;
-    border: 1px solid #FFAB12;
+    border: 1px solid #82EA00;
     box-sizing: border-box;
     padding-top: 5px;
     margin: 0px;
@@ -127,7 +127,7 @@ export const GlassContainer = styled.div`
     height: 30px;
     width: 30px;
     border-radius: 8px;
-    border: 1px solid #FF247B;
+    border: 1px solid #FFC247;
     box-sizing: border-box;
     padding-top: 5px;
     margin: 0px;
@@ -138,7 +138,7 @@ export const CoinsContainer = styled.div`
     height: 30px;
     width: 30px;
     border-radius: 8px;
-    border: 1px solid #6600E4;
+    border: 1px solid #C55BFF;
     box-sizing: border-box;
     padding-top: 5px;
     margin: 0px;
