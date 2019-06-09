@@ -31,5 +31,6 @@ export const ButtonContainer = styled.div`
     border-radius: 50%;
     box-sizing: border-box;
     padding-top: 7px;
+    padding-left: 1px;
     display: inline-block;
 `

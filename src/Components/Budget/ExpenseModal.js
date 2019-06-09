@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {Modal} from './ModalStyles';
+import {Modal, H4, H5, Select, Input, Button} from './ModalStyles';
 
 const ExpenseModal = (props) => {
     const [category, setCategory] = useState('groceries')
@@ -34,26 +34,27 @@ const ExpenseModal = (props) => {
 
     return(
         <Modal>
-        <h3>Add an Expense</h3>
-        <h5>Expense Category</h5>
-        <select onChange={handleCategory}>
+        <H4>Add an Expense</H4>
+        <H5>Expense Category</H5>
+        <Select onChange={handleCategory}>
             <option value='groceries'>Groceries</option>
             <option value='gas'>Gas</option>
             <option value='entertainment'>Entertainment</option>
             <option value='restaurants'>Restaurants</option>
             <option value='other'>Other</option>
-        </select>
-        <h5>Expense Name</h5>
-        <input 
+        </Select>
+        <H5>Expense Name</H5>
+        <Input 
             value={expenseName}
             maxLength='20'
             onChange={e => setExpenseName(e.target.value)}/>
-        <h5>Expense Amount</h5>
-        <input 
+        <H5>Expense Amount</H5>
+        <Input 
             value={expenseAmount}
             maxLength='20'
             onChange={e => setExpenseAmount(e.target.value)}/>
-        <button onClick={handleAddExpense}>Add Expense</button>
+        <Button onClick={handleAddExpense}>Add Expense</Button>
+        <Button onClick={props.toggle}>Cancel</Button>
     </Modal>
     )
 }
