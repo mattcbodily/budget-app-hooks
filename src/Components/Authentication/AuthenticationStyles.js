@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export const Image = styled.img`
-    height: 125px;
-    width: 125px;
+    height: 150px;
+    width: 150px;
     margin-top: 100px;
 `
 
 export const RegisterImage = styled.img`
-    height: 125px;
-    width: 125px;
+    height: 150px;
+    width: 150px;
     margin-top: 75px;
 `
 

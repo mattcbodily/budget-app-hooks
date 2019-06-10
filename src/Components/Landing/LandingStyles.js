@@ -2,15 +2,15 @@ import styled from 'styled-components';
 
 export const H4 = styled.h4`
     margin-top: 75px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     font-size: 25px;
     font-weight: 300;
 `
 
 export const Image = styled.img`
-    height: 175px;
-    width: 175px;
-    margin-bottom: 50px;
+    height: 200px;
+    width: 200px;
+    margin-bottom: 30px;
 `
 
 export const Button = styled.button`

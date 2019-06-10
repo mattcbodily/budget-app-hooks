@@ -1,11 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {library} from '@fortawesome/fontawesome-svg-core'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faEnvelope} from '@fortawesome/free-solid-svg-icons';
-import logo from './assets/placeholder_logo.png';
+import logo from './assets/piggy_bank.png';
 import {Image, H4, Input, Button} from './AuthenticationStyles';
-library.add(faEnvelope)
 
 const Login = (props) => {
     const [email, setEmail] = useState('')
@@ -21,8 +17,7 @@ const Login = (props) => {
     return(
         <div>
             <Image src={logo} alt='Company Logo' />
-            <H4>Budget</H4>
-            {/* <FontAwesomeIcon icon='envelope' /> */}
+            <H4>Piggy Bank</H4>
             <Input 
                 value={email}
                 placeholder='Email'

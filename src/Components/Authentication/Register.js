@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import logo from './assets/placeholder_logo.png';
+import logo from './assets/piggy_bank.png';
 import {RegisterImage, H4, Input, Button} from './AuthenticationStyles';
 
 const Register = (props) => {
@@ -15,14 +15,14 @@ const Register = (props) => {
         } else {
             axios.post('/auth/register', {email, username, password})
             .then(res => {
-                props.history.push('/instructions')
+                props.history.push('/planner')
         })}
     }
 
     return(
         <div>
             <RegisterImage src={logo} alt='Company Logo' />
-            <H4>Budget</H4>
+            <H4>Piggy Bank</H4>
             <Input 
                 value={email}
                 placeholder='Email'

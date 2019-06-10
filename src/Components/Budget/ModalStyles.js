@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const Background = styled.div`
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(0,0,0,.7);
+    position: fixed;
+    top: 0%;
+`
+
 export const Modal = styled.div`
     height: 300px;
     width: 250px;
@@ -7,7 +15,7 @@ export const Modal = styled.div`
     top: 150px;
     left: 50%;
     margin-left: -125px;
-    background-color: gray;
+    background-color: white;
     border-radius: 10px;
 `
 
@@ -33,7 +41,6 @@ export const Input = styled.input`
     width: 150px;
     font-size: 16px;
     font-weight: 300;
-    background-color: gray;
     border: none;
     border-bottom: 1px solid black;
 `
