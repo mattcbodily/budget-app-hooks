@@ -27,6 +27,10 @@ const BudgetProgress = (props) => {
         handleExpenseTotals()
     }, [expenses])
 
+    useEffect(() => {
+        handleCheckBudgetDate()
+    }, [budget.date])
+
     const handleSessionUser = async() => {
         axios.get('/auth/session-user')
         .then(res => {
@@ -35,36 +39,37 @@ const BudgetProgress = (props) => {
         }) 
     }
 
-    //the commented out function is to check if the month for the users budget matches the current month, and if it doesn't creates a new
-    //monthly budget with the previous months information.  This portion is currently broken and needs to somehow wait for budget to be set
-    //on state before firing
     const handleGetUserBudget = async(id) => {
         await axios.get(`/api/monthly-budget/${id}`)
         .then((res) => {
             setBudget(res.data[0])
             handleGetUserExpenses(res.data[0].budget_id);
         })
-        // let today = new Date();
-        // let mm = today.getMonth()+1;
-        // let yyyy = today.getFullYear();
-        // today = mm + '/' + yyyy 
-        // let splitDate = budget.date.split('/')
-        // let month = +splitDate[0]
-        // if(month < mm){
-        //     const newBudget = {
-        //         user_id: user.user_id,
-        //         budget: budget.budget,
-        //         groceries: budget.groceries,
-        //         gas: budget.gas,
-        //         entertainment: budget.entertainment,
-        //         restaurants: budget.restaurants,
-        //         other: budget.other,
-        //         date: today
-        //     }
-        //     axios.post('/api/monthly-budget', newBudget)
-        // }
     }
     
+    const handleCheckBudgetDate = () => {
+        if(budget.date){
+            let today = new Date();
+            let mm = today.getMonth()+1;
+            let yyyy = today.getFullYear();
+            today = mm + '/' + yyyy 
+            let splitDate = budget.date.split('/')
+            let month = +splitDate[0]
+            if(month < mm){
+                const newBudget = {
+                    user_id: user.user_id,
+                    budget: budget.budget,
+                    groceries: budget.groceries,
+                    gas: budget.gas,
+                    entertainment: budget.entertainment,
+                    restaurants: budget.restaurants,
+                    other: budget.other,
+                    date: today
+                }
+                axios.post('/api/monthly-budget', newBudget)
+            }
+        }
+    }
 
     const handleGetUserExpenses = async(id) => {
         await axios.get(`/api/expenses/${id}`)
