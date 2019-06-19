@@ -16,4 +16,5 @@ insert into user_monthly_budget (
     $6,
     $7,
     $8
-);
+)
+returning *;
