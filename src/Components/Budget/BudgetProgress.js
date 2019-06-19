@@ -27,16 +27,15 @@ const BudgetProgress = (props) => {
         handleExpenseTotals()
     }, [expenses])
 
-    // useEffect(() => {
-    //     handleCheckBudgetDate()
-    // }, [budget.date])
-
-    const handleSessionUser = async() => {
+    const handleSessionUser = () => {
         axios.get('/auth/session-user')
         .then(res => {
             setUser(res.data)
-            handleGetUserBudget(res.data.user_id)
-        }) 
+            handleGetUserBudget(res.data.user_id)   
+        })
+        .catch(
+            props.history.push('/')
+        )
     }
 
     const handleGetUserBudget = async(id) => {

@@ -43,6 +43,9 @@ const BudgetPlanner = (props) => {
         .then(res => {
             setUser(res.data)
         })
+        .catch(
+            props.history.push('/')
+        )
     }
 
     const addMonthlyBudget = () => {
