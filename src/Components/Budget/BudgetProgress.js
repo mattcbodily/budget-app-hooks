@@ -5,8 +5,8 @@ import ExpenseModal from './ExpenseModal';
 import {H4, H6, ChartsContainer, ChartsWrapper, ButtonContainer, BudgetNumber, GroceryNumber, GasNumber, ENumber, RestaurantsNumber, OtherNumber} from './ProgressStyles';
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faPlus} from '@fortawesome/free-solid-svg-icons';
-library.add(faPlus)
+import {faPlus, faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons';
+library.add(faPlus, faChevronLeft, faChevronRight)
 
 const BudgetProgress = (props) => {
     const [user, setUser] = useState({})
@@ -18,6 +18,7 @@ const BudgetProgress = (props) => {
     const [restaurantsTotal, setRestaurantsTotal] = useState(0)
     const [otherTotal, setOtherTotal] = useState(0)
     const [showModal, setShowModal] = useState(false)
+    const [budgetIndex, setBudgetIndex] = useState(0)
 
     useEffect(() => {
         handleSessionUser()
@@ -61,8 +62,10 @@ const BudgetProgress = (props) => {
                 }
                 axios.post('/api/monthly-budget', newBudget)
                 .then(res => {
-                    setBudget(res.data[0])
-                    handleGetUserExpenses(res.data[0].budget_id)
+                    setBudget(res.data)
+                    //setBudget(res.data[0])
+                    handleGetUserExpenses(res.data[budgetIndex].budget_id)
+                    // handleGetUserExpenses(res.data[0].budget_id)
                 })
             }
         })
@@ -99,11 +102,30 @@ const BudgetProgress = (props) => {
         setShowModal(!showModal)
     }
 
+    // this is to create functionality that will allow users to go through up to the last 12 months of their budget. Index is stored 
+    // on state, and can be incremented through buttons that will be coded into the JSX
+
+    const incrementIndex = () => {
+        if(budgetIndex < budget.length - 1){
+            setBudgetIndex(budgetIndex + 1)
+        } else {
+            setBudgetIndex(0)
+        }
+    }
+
+    const decrementIndex = () => {
+        if(budgetIndex > 0){
+            setBudgetIndex(budgetIndex - 1)
+        } else {
+            setBudgetIndex(budget.length - 1)
+        }
+    }
+
     const totalExpenses = (groceriesTotal + gasTotal + entertainmentTotal + restaurantsTotal + otherTotal);
     const budgetRemaining = (budget.budget - groceriesTotal - gasTotal - entertainmentTotal - restaurantsTotal - otherTotal);
     return (
         <div>
-            <H4>{user.username}'s Progress</H4>
+            <H4><FontAwesomeIcon icon='chevron-left' onClick={decrementIndex}/>{user.username}'s Progress<FontAwesomeIcon icon='chevron-right' onClick={incrementIndex}/></H4>
             <ChartsContainer>
                 <ChartsWrapper>
                     <H6>All Budget</H6>
