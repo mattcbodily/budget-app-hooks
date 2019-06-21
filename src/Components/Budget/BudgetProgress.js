@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import {Doughnut} from 'react-chartjs-2';
 import ExpenseModal from './ExpenseModal';
-import {H4, H6, ChartsContainer, ChartsWrapper, ButtonContainer, BudgetNumber, GroceryNumber, GasNumber, ENumber, RestaurantsNumber, OtherNumber} from './ProgressStyles';
+import ChartDisplay from './ChartDisplay/ChartDisplay';
+import {H4, ButtonContainer} from './ProgressStyles';
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus, faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons';
@@ -22,7 +22,7 @@ const BudgetProgress = (props) => {
 
     useEffect(() => {
         handleSessionUser()
-    }, [user.id])
+    }, [])
 
     useEffect(() => {
         handleExpenseTotals()
@@ -34,9 +34,9 @@ const BudgetProgress = (props) => {
             setUser(res.data)
             handleGetUserBudget(res.data.user_id)   
         })
-        .catch(
-            props.history.push('/')
-        )
+        // .catch(
+        //     props.history.push('/')
+        // )
     }
 
     const handleGetUserBudget = async(id) => {
@@ -62,10 +62,8 @@ const BudgetProgress = (props) => {
                 }
                 axios.post('/api/monthly-budget', newBudget)
                 .then(res => {
-                    setBudget(res.data)
-                    //setBudget(res.data[0])
-                    handleGetUserExpenses(res.data[budgetIndex].budget_id)
-                    // handleGetUserExpenses(res.data[0].budget_id)
+                    setBudget(res.data[0])
+                    handleGetUserExpenses(res.data[0].budget_id)
                 })
             }
         })
@@ -108,16 +106,21 @@ const BudgetProgress = (props) => {
     const incrementIndex = () => {
         if(budgetIndex < budget.length - 1){
             setBudgetIndex(budgetIndex + 1)
+            handleGetUserExpenses(budgetIndex + 1)
         } else {
             setBudgetIndex(0)
+            handleGetUserExpenses(0)
         }
     }
 
     const decrementIndex = () => {
         if(budgetIndex > 0){
             setBudgetIndex(budgetIndex - 1)
+            handleGetUserExpenses(budgetIndex - 1)
+
         } else {
             setBudgetIndex(budget.length - 1)
+            handleGetUserExpenses(budget.length - 1)
         }
     }
 
@@ -126,122 +129,15 @@ const BudgetProgress = (props) => {
     return (
         <div>
             <H4><FontAwesomeIcon icon='chevron-left' onClick={decrementIndex}/>{user.username}'s Progress<FontAwesomeIcon icon='chevron-right' onClick={incrementIndex}/></H4>
-            <ChartsContainer>
-                <ChartsWrapper>
-                    <H6>All Budget</H6>
-                    <BudgetNumber>${budgetRemaining}</BudgetNumber>
-                    <Doughnut 
-                        height={100}
-                        width={100}
-                        data={{
-                            datasets: [{
-                                label: 'Budget',
-                                backgroundColor: ['#FF4242', '#FFAAAA'],
-                                data: [budgetRemaining, totalExpenses]
-                            }]
-                        }}
-                        options={{
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            cutoutPercentage: 60
-                    }}/>
-                </ChartsWrapper>
-                <ChartsWrapper>
-                    <H6>Groceries</H6>
-                    <GroceryNumber>${budget.groceries - groceriesTotal}</GroceryNumber>
-                    <Doughnut
-                        height={1}
-                        width={1} 
-                        data={{
-                            datasets: [{
-                                label: 'Groceries',
-                                backgroundColor: ['#FF8A8A', '#DB0000'],
-                                data: [(budget.groceries - groceriesTotal), groceriesTotal]
-                            }]
-                        }}
-                        options={{
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            cutoutPercentage: 60
-                    }}/>
-                </ChartsWrapper>
-                <ChartsWrapper>
-                    <H6>Gas</H6>
-                    <GasNumber>${budget.gas - gasTotal}</GasNumber>
-                    <Doughnut
-                        height={1}
-                        width={1} 
-                        data={{
-                            datasets: [{
-                                label: 'Gas',
-                                backgroundColor: ['#7EC7E6', '#00A4E7'],
-                                data: [(budget.gas - gasTotal), gasTotal]
-                            }]
-                        }}
-                        options={{
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            cutoutPercentage: 60
-                    }}/>
-                </ChartsWrapper>
-                <ChartsWrapper>
-                    <H6>Entertainment</H6>
-                    <ENumber>${budget.entertainment - entertainmentTotal}</ENumber>
-                    <Doughnut
-                        height={1}
-                        width={1} 
-                        data={{
-                            datasets: [{
-                                label: 'Entertainment',
-                                backgroundColor: ['#BFE98B', '#82EA00'],
-                                data: [(budget.entertainment - entertainmentTotal), entertainmentTotal]
-                            }]
-                        }}
-                        options={{
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            cutoutPercentage: 60
-                    }}/>
-                </ChartsWrapper>
-                <ChartsWrapper>
-                    <H6>Restaurants</H6>
-                    <RestaurantsNumber>${budget.restaurants - restaurantsTotal}</RestaurantsNumber>
-                    <Doughnut
-                        height={1}
-                        width={1} 
-                        data={{
-                            datasets: [{
-                                label: 'Restaurants',
-                                backgroundColor: ['#FFE5B0', '#FFC247'],
-                                data: [(budget.restaurants - restaurantsTotal), restaurantsTotal]
-                            }]
-                        }}
-                        options={{
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            cutoutPercentage: 60
-                    }}/>
-                </ChartsWrapper>
-                <ChartsWrapper>
-                    <H6>Other</H6>
-                    <OtherNumber>${budget.other - otherTotal}</OtherNumber>
-                    <Doughnut
-                        height={1}
-                        width={1} 
-                        data={{
-                            datasets: [{
-                                label: 'Other',
-                                backgroundColor: ['#E3B0FF', '#C55BFF'],
-                                data: [(budget.other - otherTotal), otherTotal]
-                            }]
-                        }}
-                        options={{
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            cutoutPercentage: 60
-                    }}/>
-                </ChartsWrapper>
-            </ChartsContainer>
+            <ChartDisplay 
+                budgetRemaining={budgetRemaining}
+                totalExpenses={totalExpenses}
+                budget={budget}
+                groceriesTotal={groceriesTotal}
+                gasTotal={gasTotal}
+                entertainmentTotal={entertainmentTotal}
+                restaurantsTotal={restaurantsTotal}
+                otherTotal={otherTotal}/>
             <ButtonContainer>
                 <FontAwesomeIcon icon='plus' onClick={handleModalToggle} style={{color: 'white', fontSize: '30px'}}/>
             </ButtonContainer>
