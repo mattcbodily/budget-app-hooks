@@ -1,4 +1,5 @@
 insert into user_spending (
+    user_id,
     budget_id,
     expense_name,
     category,
@@ -9,5 +10,6 @@ insert into user_spending (
     $2,
     $3,
     $4,
-    $5
+    $5,
+    $6
 );

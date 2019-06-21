@@ -15,6 +15,7 @@ const ExpenseModal = (props) => {
         today = mm + '/' + dd + '/' + yyyy;
 
         let expenseObj = {
+            user_id: props.user.user_id,
             budget_id: props.budget.budget_id,
             expense_name: expenseName,
             category: category,

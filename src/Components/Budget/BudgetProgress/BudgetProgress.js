@@ -5,8 +5,8 @@ import ChartDisplay from '../ChartDisplay/ChartDisplay';
 import {H4, ButtonContainer} from './ProgressStyles';
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faPlus, faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons';
-library.add(faPlus, faChevronLeft, faChevronRight)
+import {faPlus} from '@fortawesome/free-solid-svg-icons';
+library.add(faPlus)
 
 const BudgetProgress = (props) => {
     const [user, setUser] = useState({})
@@ -48,7 +48,7 @@ const BudgetProgress = (props) => {
         .then((res) => {
             if(res.data[0].date === today){
                 setBudget(res.data)
-                handleGetUserExpenses(res.data[0].budget_id)
+                handleGetUserExpenses(res.data[0].user_id)
             } else {
                 const newBudget = {
                     user_id: res.data[0].user_id,
@@ -63,7 +63,7 @@ const BudgetProgress = (props) => {
                 axios.post('/api/monthly-budget', newBudget)
                 .then(res => {
                     setBudget(res.data)
-                    handleGetUserExpenses(res.data[0].budget_id)
+                    handleGetUserExpenses(res.data[0].user_id)
                 })
             }
         })
@@ -76,12 +76,12 @@ const BudgetProgress = (props) => {
         })
     }
 
-    const handleExpenseTotals = () => {
-        let groceries = expenses.filter(element => element.category === 'groceries');
-        let gas = expenses.filter(element => element.category === 'gas');
-        let entertainment = expenses.filter(element => element.category === 'entertainment')
-        let restaurants = expenses.filter(element => element.category === 'restaurants')
-        let other = expenses.filter(element => element.category === 'other')
+    const handleExpenseTotals = (budget_id) => {
+        let groceries = expenses.filter(element => element.category === 'groceries' && element.budget_id === budget_id);
+        let gas = expenses.filter(element => element.category === 'gas' && element.budget_id === budget_id);
+        let entertainment = expenses.filter(element => element.category === 'entertainment' && element.budget_id === budget_id)
+        let restaurants = expenses.filter(element => element.category === 'restaurants' && element.budget_id === budget_id)
+        let other = expenses.filter(element => element.category === 'other' && element.budget_id === budget_id)
 
         let groceriesTotal = groceries.reduce((acc, curr) => {return acc + +curr.amount}, 0)
         let gasTotal = gas.reduce((acc, curr) => {return acc + +curr.amount}, 0)
@@ -100,13 +100,30 @@ const BudgetProgress = (props) => {
         setShowModal(!showModal)
     }
 
+    const incrementIndex = () => {
+        if(budgetIndex < budget.length - 1){
+            setBudgetIndex(budgetIndex + 1)
+        } else {
+            setBudgetIndex(0)
+        }
+    }
+
+    const decrementIndex = () => {
+        if(budgetIndex > 0){
+            setBudgetIndex(budgetIndex - 1)
+        } else {
+            setBudgetIndex(budget.length - 1)
+        }
+    }
     
     const budgetList = budget.map((element, i) => {
         const totalExpenses = (groceriesTotal + gasTotal + entertainmentTotal + restaurantsTotal + otherTotal);
         const budgetRemaining = (element.budget - groceriesTotal - gasTotal - entertainmentTotal - restaurantsTotal - otherTotal);
         return (
             <ChartDisplay
-                key={i} 
+                key={i}
+                incrementIndex={incrementIndex}
+                decrementIndex={decrementIndex} 
                 budgetRemaining={budgetRemaining}
                 totalExpenses={totalExpenses}
                 budget={budget[i]}
@@ -114,7 +131,8 @@ const BudgetProgress = (props) => {
                 gasTotal={gasTotal}
                 entertainmentTotal={entertainmentTotal}
                 restaurantsTotal={restaurantsTotal}
-                otherTotal={otherTotal} />
+                otherTotal={otherTotal}
+                handleExpenseTotals={handleExpenseTotals} />
         )
     })
     
@@ -149,39 +167,19 @@ const BudgetProgress = (props) => {
         }
     }
 
-    const incrementIndex = () => {
-        if(budgetIndex < budget.length - 1){
-            setBudgetIndex(budgetIndex + 1)
-            handleGetUserExpenses(budgetIndex + 1)
-        } else {
-            setBudgetIndex(0)
-            handleGetUserExpenses(0)
-        }
-    }
-
-    const decrementIndex = () => {
-        if(budgetIndex > 0){
-            setBudgetIndex(budgetIndex - 1)
-            handleGetUserExpenses(budgetIndex - 1)
-
-        } else {
-            setBudgetIndex(budget.length - 1)
-            handleGetUserExpenses(budget.length - 1)
-        }
-    }
 
     return (
         <div>
-            <H4><FontAwesomeIcon icon='chevron-left' onClick={incrementIndex}/><FontAwesomeIcon icon='chevron-right' onClick={decrementIndex}/></H4>
             {renderBudget(budgetList)}
             <ButtonContainer>
                 <FontAwesomeIcon icon='plus' onClick={handleModalToggle} style={{color: 'white', fontSize: '30px'}}/>
             </ButtonContainer>
             {showModal
-            ? <ExpenseModal 
-                    budget={budget}
-                    toggle={handleModalToggle}
-                    expenses={handleGetUserExpenses}/>
+            ? <ExpenseModal
+                user={user}
+                budget={budget}
+                toggle={handleModalToggle}
+                expenses={handleGetUserExpenses}/>
             : null}
         </div>
     )

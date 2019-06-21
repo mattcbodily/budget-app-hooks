@@ -12,8 +12,8 @@ module.exports = {
         .catch(err => res.status(500).send({errorMessage: 'Error!'}, console.log(err)))
     },
     addExpense: (req, res) => {
-        const {budget_id, expense_name, category, amount, date} = req.body;
-        req.app.get('db').budget.add_expense(budget_id, expense_name, category, amount, date)
+        const {user_id, budget_id, expense_name, category, amount, date} = req.body;
+        req.app.get('db').budget.add_expense(user_id, budget_id, expense_name, category, amount, date)
         .then(res.sendStatus(200))
         .catch(err => res.status(500).send({errorMessage: 'Error!'}, console.log(err))) 
     },

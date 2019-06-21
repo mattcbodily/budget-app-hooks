@@ -1,10 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Doughnut} from 'react-chartjs-2';
-import {H6, ChartsContainer, ChartsWrapper, BudgetNumber, GroceryNumber, GasNumber, ENumber, RestaurantsNumber, OtherNumber} from '../BudgetProgress/ProgressStyles';
+import {H4, H6, ChartsContainer, ChartsWrapper, BudgetNumber, GroceryNumber, GasNumber, ENumber, RestaurantsNumber, OtherNumber} from '../BudgetProgress/ProgressStyles';
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons';
+library.add(faChevronLeft, faChevronRight)
 
 const ChartDisplay = (props) => {
+    useEffect(() => {
+        props.handleExpenseTotals(props.budget.budget_id)
+    }, [])
+
     return(
         <div>
+            <H4><FontAwesomeIcon icon='chevron-left' onClick={props.incrementIndex}/>Your Budget: {props.budget.date}<FontAwesomeIcon icon='chevron-right' onClick={props.decrementIndex}/></H4>
             <ChartsContainer>
                 <ChartsWrapper>
                     <H6>All Budget</H6>
