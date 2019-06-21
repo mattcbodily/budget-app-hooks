@@ -1,6 +1,6 @@
 import React from 'react';
 import {Doughnut} from 'react-chartjs-2';
-import {H6, ChartsContainer, ChartsWrapper, BudgetNumber, GroceryNumber, GasNumber, ENumber, RestaurantsNumber, OtherNumber} from './../ProgressStyles';
+import {H6, ChartsContainer, ChartsWrapper, BudgetNumber, GroceryNumber, GasNumber, ENumber, RestaurantsNumber, OtherNumber} from '../BudgetProgress/ProgressStyles';
 
 const ChartDisplay = (props) => {
     return(

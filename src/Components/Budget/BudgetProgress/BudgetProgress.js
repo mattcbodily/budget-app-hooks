@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import ExpenseModal from './ExpenseModal';
-import ChartDisplay from './ChartDisplay/ChartDisplay';
+import ExpenseModal from '../ExpenseModal/ExpenseModal';
+import ChartDisplay from '../ChartDisplay/ChartDisplay';
 import {H4, ButtonContainer} from './ProgressStyles';
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';

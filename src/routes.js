@@ -4,8 +4,8 @@ import Landing from './Components/Landing/Landing';
 import Login from './Components/Authentication/Login';
 import Register from './Components/Authentication/Register';
 import Instructions from './Components/Instructions/Instructions';
-import BudgetPlanner from './Components/Budget/BudgetPlanner';
-import BudgetProgress from './Components/Budget/BudgetProgress';
+import BudgetPlanner from './Components/Budget/BudgetPlanner/BudgetPlanner';
+import BudgetProgress from './Components/Budget/BudgetProgress/BudgetProgress';
 
 export default (
     <Switch>
