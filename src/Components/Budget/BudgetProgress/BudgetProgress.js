@@ -47,7 +47,7 @@ const BudgetProgress = (props) => {
         await axios.get(`/api/monthly-budget/${id}`)
         .then((res) => {
             if(res.data[0].date === today){
-                setBudget(res.data[0])
+                setBudget(res.data)
                 handleGetUserExpenses(res.data[0].budget_id)
             } else {
                 const newBudget = {
@@ -62,7 +62,7 @@ const BudgetProgress = (props) => {
                 }
                 axios.post('/api/monthly-budget', newBudget)
                 .then(res => {
-                    setBudget(res.data[0])
+                    setBudget(res.data)
                     handleGetUserExpenses(res.data[0].budget_id)
                 })
             }
@@ -100,8 +100,54 @@ const BudgetProgress = (props) => {
         setShowModal(!showModal)
     }
 
-    // this is to create functionality that will allow users to go through up to the last 12 months of their budget. Index is stored 
-    // on state, and can be incremented through buttons that will be coded into the JSX
+    
+    const budgetList = budget.map((element, i) => {
+        const totalExpenses = (groceriesTotal + gasTotal + entertainmentTotal + restaurantsTotal + otherTotal);
+        const budgetRemaining = (element.budget - groceriesTotal - gasTotal - entertainmentTotal - restaurantsTotal - otherTotal);
+        return (
+            <ChartDisplay
+                key={i} 
+                budgetRemaining={budgetRemaining}
+                totalExpenses={totalExpenses}
+                budget={budget[i]}
+                groceriesTotal={groceriesTotal}
+                gasTotal={gasTotal}
+                entertainmentTotal={entertainmentTotal}
+                restaurantsTotal={restaurantsTotal}
+                otherTotal={otherTotal} />
+        )
+    })
+    
+    const renderBudget = (arr) => {
+        switch(budgetIndex){
+            case 0:
+                return arr[0]
+            case 1:
+                return arr[1]
+            case 2:
+                return arr[2]
+            case 3:
+                return arr[3]
+            case 4:
+                return arr[4]
+            case 5:
+                return arr[5]
+            case 6:
+                return arr[6]
+            case 7:
+                return arr[7]
+            case 8:
+                return arr[8]
+            case 9:
+                return arr[9]
+            case 10:
+                return arr[10]
+            case 11:
+                return arr[11]
+            default:
+                return
+        }
+    }
 
     const incrementIndex = () => {
         if(budgetIndex < budget.length - 1){
@@ -124,20 +170,10 @@ const BudgetProgress = (props) => {
         }
     }
 
-    const totalExpenses = (groceriesTotal + gasTotal + entertainmentTotal + restaurantsTotal + otherTotal);
-    const budgetRemaining = (budget.budget - groceriesTotal - gasTotal - entertainmentTotal - restaurantsTotal - otherTotal);
     return (
         <div>
-            <H4><FontAwesomeIcon icon='chevron-left' onClick={decrementIndex}/>{user.username}'s Progress<FontAwesomeIcon icon='chevron-right' onClick={incrementIndex}/></H4>
-            <ChartDisplay 
-                budgetRemaining={budgetRemaining}
-                totalExpenses={totalExpenses}
-                budget={budget}
-                groceriesTotal={groceriesTotal}
-                gasTotal={gasTotal}
-                entertainmentTotal={entertainmentTotal}
-                restaurantsTotal={restaurantsTotal}
-                otherTotal={otherTotal}/>
+            <H4><FontAwesomeIcon icon='chevron-left' onClick={incrementIndex}/><FontAwesomeIcon icon='chevron-right' onClick={decrementIndex}/></H4>
+            {renderBudget(budgetList)}
             <ButtonContainer>
                 <FontAwesomeIcon icon='plus' onClick={handleModalToggle} style={{color: 'white', fontSize: '30px'}}/>
             </ButtonContainer>
