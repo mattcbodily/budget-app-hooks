@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ExpenseModal from '../ExpenseModal/ExpenseModal';
+import EditModal from './../EditModal/EditModal';
 import ChartDisplay from '../ChartDisplay/ChartDisplay';
 import {ButtonContainer} from './ProgressStyles';
 import {library} from '@fortawesome/fontawesome-svg-core'
@@ -12,7 +13,8 @@ const BudgetProgress = (props) => {
     const [user, setUser] = useState({})
     const [budget, setBudget] = useState([])
     const [expenses, setExpenses] = useState([])
-    const [showModal, setShowModal] = useState(false)
+    const [expenseModal, setExpenseModal] = useState(false)
+    const [editModal, setEditModal] = useState(false)
     const [budgetIndex, setBudgetIndex] = useState(0)
 
     useEffect(() => {
@@ -67,8 +69,12 @@ const BudgetProgress = (props) => {
         })
     }
 
-    const handleModalToggle = () => {
-        setShowModal(!showModal)
+    const expenseModalToggle = () => {
+        setExpenseModal(!expenseModal)
+    }
+
+    const editModalToggle = () => {
+        setEditModal(!editModal)
     }
 
     const incrementIndex = () => {
@@ -153,15 +159,22 @@ const BudgetProgress = (props) => {
         <div>
             {renderBudget(budgetList)}
             <ButtonContainer>
-                <FontAwesomeIcon icon='plus' onClick={handleModalToggle} style={{color: 'white', fontSize: '30px'}}/>
+                <FontAwesomeIcon icon='plus' onClick={expenseModalToggle} style={{color: 'white', fontSize: '30px'}}/>
             </ButtonContainer>
-            {showModal
+            {expenseModal
             ? <ExpenseModal
                 user={user}
                 budget={budget}
-                toggle={handleModalToggle}
+                toggle={expenseModalToggle}
                 expenses={handleGetUserExpenses}/>
             : null}
+            <ButtonContainer>
+                <FontAwesomeIcon icon='plus' onClick={editModalToggle} style={{color: 'white', fontSize: '30px'}}/>
+            </ButtonContainer>
+            {editModal
+            ? <EditModal />
+            : null
+            }
         </div>
     )
 }
