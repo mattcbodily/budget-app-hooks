@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ExpenseModal from '../ExpenseModal/ExpenseModal';
 import ChartDisplay from '../ChartDisplay/ChartDisplay';
-import {H4, ButtonContainer} from './ProgressStyles';
+import {ButtonContainer} from './ProgressStyles';
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
@@ -12,21 +12,12 @@ const BudgetProgress = (props) => {
     const [user, setUser] = useState({})
     const [budget, setBudget] = useState([])
     const [expenses, setExpenses] = useState([])
-    const [groceriesTotal, setGroceriesTotal] = useState(0)
-    const [gasTotal, setGasTotal] = useState(0)
-    const [entertainmentTotal, setEntertainmentTotal] = useState(0)
-    const [restaurantsTotal, setRestaurantsTotal] = useState(0)
-    const [otherTotal, setOtherTotal] = useState(0)
     const [showModal, setShowModal] = useState(false)
     const [budgetIndex, setBudgetIndex] = useState(0)
 
     useEffect(() => {
         handleSessionUser()
     }, [])
-
-    useEffect(() => {
-        handleExpenseTotals()
-    }, [expenses])
 
     const handleSessionUser = () => {
         axios.get('/auth/session-user')
@@ -76,26 +67,6 @@ const BudgetProgress = (props) => {
         })
     }
 
-    const handleExpenseTotals = (budget_id) => {
-        let groceries = expenses.filter(element => element.category === 'groceries' && element.budget_id === budget_id);
-        let gas = expenses.filter(element => element.category === 'gas' && element.budget_id === budget_id);
-        let entertainment = expenses.filter(element => element.category === 'entertainment' && element.budget_id === budget_id)
-        let restaurants = expenses.filter(element => element.category === 'restaurants' && element.budget_id === budget_id)
-        let other = expenses.filter(element => element.category === 'other' && element.budget_id === budget_id)
-
-        let groceriesTotal = groceries.reduce((acc, curr) => {return acc + +curr.amount}, 0)
-        let gasTotal = gas.reduce((acc, curr) => {return acc + +curr.amount}, 0)
-        let entertainmentTotal = entertainment.reduce((acc, curr) => {return acc + +curr.amount}, 0)
-        let restaurantsTotal = restaurants.reduce((acc, curr) => {return acc + +curr.amount}, 0)
-        let otherTotal = other.reduce((acc, curr) => {return acc + +curr.amount}, 0)
-
-        setGroceriesTotal(groceriesTotal)
-        setGasTotal(gasTotal)
-        setEntertainmentTotal(entertainmentTotal)
-        setRestaurantsTotal(restaurantsTotal)
-        setOtherTotal(otherTotal)
-    }
-
     const handleModalToggle = () => {
         setShowModal(!showModal)
     }
@@ -117,6 +88,17 @@ const BudgetProgress = (props) => {
     }
     
     const budgetList = budget.map((element, i) => {
+        let groceries = expenses.filter(element => element.category === 'groceries' && element.budget_id === budget[i].budget_id);
+        let gas = expenses.filter(element => element.category === 'gas' && element.budget_id === budget[i].budget_id);
+        let entertainment = expenses.filter(element => element.category === 'entertainment' && element.budget_id === budget[i].budget_id)
+        let restaurants = expenses.filter(element => element.category === 'restaurants' && element.budget_id === budget[i].budget_id)
+        let other = expenses.filter(element => element.category === 'other' && element.budget_id === budget[i].budget_id)
+
+        let groceriesTotal = groceries.reduce((acc, curr) => {return acc + +curr.amount}, 0)
+        let gasTotal = gas.reduce((acc, curr) => {return acc + +curr.amount}, 0)
+        let entertainmentTotal = entertainment.reduce((acc, curr) => {return acc + +curr.amount}, 0)
+        let restaurantsTotal = restaurants.reduce((acc, curr) => {return acc + +curr.amount}, 0)
+        let otherTotal = other.reduce((acc, curr) => {return acc + +curr.amount}, 0)
         const totalExpenses = (groceriesTotal + gasTotal + entertainmentTotal + restaurantsTotal + otherTotal);
         const budgetRemaining = (element.budget - groceriesTotal - gasTotal - entertainmentTotal - restaurantsTotal - otherTotal);
         return (
@@ -131,8 +113,7 @@ const BudgetProgress = (props) => {
                 gasTotal={gasTotal}
                 entertainmentTotal={entertainmentTotal}
                 restaurantsTotal={restaurantsTotal}
-                otherTotal={otherTotal}
-                handleExpenseTotals={handleExpenseTotals} />
+                otherTotal={otherTotal} />
         )
     })
     
