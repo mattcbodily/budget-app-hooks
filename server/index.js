@@ -31,6 +31,7 @@ app.get('/api/monthly-budget/:id', main.getUserBudget); //found in the BudgetPro
 app.get('/api/expenses/:id', main.getUserExpenses); //found in the BudgetProgress component, takes the budget id
 app.post('/api/monthly-budget', main.addMonthlyBudget); //found in the BudgetPlanner component
 app.post('/api/expense', main.addExpense); //found in the ExpenseModal component
+app.put('/api/monthly-budget', main.updateBudget); //found in the EditModal component
 
 const port = SERVER_PORT || 5100;
 app.listen(port, () => console.log(`Budgeting the things on ${port}`))

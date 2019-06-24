@@ -22,5 +22,12 @@ module.exports = {
         req.app.get('db').budget.get_user_expenses(id)
         .then(expenses => res.status(200).send(expenses))
         .catch(err => res.status(500).send({errorMessage: 'Error!'}, console.log(err)))
+    },
+    updateBudget: (req, res) => {
+        console.log(req.body)
+        const {budget, groceries, gas, entertainment, restaurants, other, budget_id} = req.body;
+        req.app.get('db').budget.update_budget(budget, groceries, gas, entertainment, restaurants, other, budget_id)
+        .then(res.sendStatus(200))
+        .catch(err => res.status(500).send({errorMessage: 'Error!'}, console.log(err)))
     }
 }

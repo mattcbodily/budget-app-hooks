@@ -108,18 +108,41 @@ const BudgetProgress = (props) => {
         const totalExpenses = (groceriesTotal + gasTotal + entertainmentTotal + restaurantsTotal + otherTotal);
         const budgetRemaining = (element.budget - groceriesTotal - gasTotal - entertainmentTotal - restaurantsTotal - otherTotal);
         return (
-            <ChartDisplay
-                key={i}
-                incrementIndex={incrementIndex}
-                decrementIndex={decrementIndex} 
-                budgetRemaining={budgetRemaining}
-                totalExpenses={totalExpenses}
-                budget={budget[i]}
-                groceriesTotal={groceriesTotal}
-                gasTotal={gasTotal}
-                entertainmentTotal={entertainmentTotal}
-                restaurantsTotal={restaurantsTotal}
-                otherTotal={otherTotal} />
+            <div>
+                <ChartDisplay
+                    key={i}
+                    incrementIndex={incrementIndex}
+                    decrementIndex={decrementIndex} 
+                    budgetRemaining={budgetRemaining}
+                    totalExpenses={totalExpenses}
+                    budget={budget[i]}
+                    groceriesTotal={groceriesTotal}
+                    gasTotal={gasTotal}
+                    entertainmentTotal={entertainmentTotal}
+                    restaurantsTotal={restaurantsTotal}
+                    otherTotal={otherTotal} />
+                <ButtonContainer>
+                    <FontAwesomeIcon icon='plus' onClick={expenseModalToggle} style={{color: 'white', fontSize: '30px'}}/>
+                </ButtonContainer>
+                {expenseModal
+                ? <ExpenseModal
+                    user={user}
+                    budget={budget}
+                    toggle={expenseModalToggle}
+                    expenses={handleGetUserExpenses}/>
+                : null}
+                <ButtonContainer>
+                    <FontAwesomeIcon icon='plus' onClick={editModalToggle} style={{color: 'white', fontSize: '30px'}}/>
+                </ButtonContainer>
+                {editModal
+                ? <EditModal
+                    user={user}
+                    budget={element}
+                    getBudget={handleGetUserBudget}
+                    toggle={editModalToggle}/>
+                : null
+                }
+            </div>
         )
     })
     
@@ -158,23 +181,6 @@ const BudgetProgress = (props) => {
     return (
         <div>
             {renderBudget(budgetList)}
-            <ButtonContainer>
-                <FontAwesomeIcon icon='plus' onClick={expenseModalToggle} style={{color: 'white', fontSize: '30px'}}/>
-            </ButtonContainer>
-            {expenseModal
-            ? <ExpenseModal
-                user={user}
-                budget={budget}
-                toggle={expenseModalToggle}
-                expenses={handleGetUserExpenses}/>
-            : null}
-            <ButtonContainer>
-                <FontAwesomeIcon icon='plus' onClick={editModalToggle} style={{color: 'white', fontSize: '30px'}}/>
-            </ButtonContainer>
-            {editModal
-            ? <EditModal />
-            : null
-            }
         </div>
     )
 }
