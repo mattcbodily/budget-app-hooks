@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Doughnut} from 'react-chartjs-2';
 import {H4, H6, ChartsContainer, ChartsWrapper, BudgetNumber, GroceryNumber, GasNumber, ENumber, RestaurantsNumber, OtherNumber} from '../BudgetProgress/ProgressStyles';
 import {library} from '@fortawesome/fontawesome-svg-core'
