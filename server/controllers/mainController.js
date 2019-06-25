@@ -5,6 +5,12 @@ module.exports = {
         .then(budget => res.status(200).send(budget))
         .catch(err => res.status(500).send({errorMessage: 'Error!'}, console.log(err)))
     },
+    getBudgetAnalysis: (req, res) => {
+        const {id} = req.params;
+        req.app.get('db').budget.get_budget_analysis(id)
+        .then(budget => res.status(200).send(budget))
+        .catch(err => res.status(500).send({errorMessage: 'Error!'}, console.log(err)))
+    },
     addMonthlyBudget: (req, res) => {
         const {user_id, budget, groceries, gas, entertainment, restaurants, other, date} = req.body;
         req.app.get('db').budget.add_monthly_budget(user_id, budget, groceries, gas, entertainment, restaurants, other, date)

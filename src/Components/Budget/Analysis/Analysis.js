@@ -32,7 +32,7 @@ const Analysis = (props) => {
     }
 
     const handleUserBudget = (id) => {
-        axios.get(`/api/monthly-budget/${id}`)
+        axios.get(`/api/budget-analysis/${id}`)
         .then(res => {
             const dates = res.data.map(element => element.date)
             const allBudget = res.data.map(element => element.budget)

@@ -28,6 +28,7 @@ app.get('/auth/session-user', auth.getSessionUser);
 
 //main endpoints
 app.get('/api/monthly-budget/:id', main.getUserBudget); //found in the BudgetProgress component, takes the user id
+app.get('/api/budget-analysis/:id', main.getBudgetAnalysis); //found in the Analysis component, takes the user id
 app.get('/api/expenses/:id', main.getUserExpenses); //found in the BudgetProgress component, takes the budget id
 app.post('/api/monthly-budget', main.addMonthlyBudget); //found in the BudgetPlanner component
 app.post('/api/expense', main.addExpense); //found in the ExpenseModal component
