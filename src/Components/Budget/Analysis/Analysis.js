@@ -4,7 +4,6 @@ import LineDisplay from './LineDisplay/LineDisplay';
 
 const Analysis = (props) => {
     const [user, setUser] = useState({})
-    const [expenses, setExpenses] = useState([])
     const [dates, setDates] = useState([])
     const [allBudget, setAllBudget] = useState([])
     const [groceries, setGroceries] = useState([])
@@ -12,6 +11,7 @@ const Analysis = (props) => {
     const [entertainment, setEntertainment] = useState([])
     const [restaurants, setRestaurants] = useState([])
     const [other, setOther] = useState([])
+    const [allExpenses, setAllExpenses] = useState([])
     const [groceryExpenses, setGroceryExpenses] = useState([])
     const [gasExpenses, setGasExpenses] = useState([])
     const [entertainmentExpenses, setEntertainmentExpenses] = useState([])
@@ -48,14 +48,79 @@ const Analysis = (props) => {
             setEntertainment(entertainment)
             setRestaurants(restaurants)
             setOther(other)
-            handleUserExpenses(res.data[0].user_id)
+            handleUserExpenses(res.data[0].user_id, dates)
         })
     }
 
-    const handleUserExpenses = (id) => {
+    const handleUserExpenses = (id, dates) => {
         axios.get(`/api/expenses/${id}`)
         .then(res => {
-            setExpenses(res.data)
+            const separatedAllExpenses = dates.map(element => {
+                return res.data.filter(item => {
+                    return item.date === element
+                })
+            })
+            const summedAllExpenses = separatedAllExpenses.map(element => {
+                return element.reduce((acc, curr) => {
+                    return acc + +curr.amount
+                }, 0)
+            })
+            setAllExpenses(summedAllExpenses)
+            const separatedGroceryExpenses = dates.map(element => {
+                return res.data.filter(item => {
+                    return item.date === element && item.category === 'groceries'
+                })
+            })
+            const summedGroceryExpenses = separatedGroceryExpenses.map(element => {
+                return element.reduce((acc, curr) => {
+                    return acc + +curr.amount
+                }, 0)
+            })
+            setGroceryExpenses(summedGroceryExpenses)
+            const separatedGasExpenses = dates.map(element => {
+                return res.data.filter(item => {
+                    return item.date === element && item.category === 'gas'
+                })
+            })
+            const summedGasExpenses = separatedGasExpenses.map(element => {
+                return element.reduce((acc, curr) => {
+                    return acc + +curr.amount
+                }, 0)
+            })
+            setGasExpenses(summedGasExpenses)
+            const separatedEntertainmentExpenses = dates.map(element => {
+                return res.data.filter(item => {
+                    return item.date === element && item.category === 'entertainment'
+                })
+            })
+            const summedEntertainmentExpenses = separatedEntertainmentExpenses.map(element => {
+                return element.reduce((acc, curr) => {
+                    return acc + +curr.amount
+                }, 0)
+            })
+            setEntertainmentExpenses(summedEntertainmentExpenses)
+            const separatedRestaurantsExpenses = dates.map(element => {
+                return res.data.filter(item => {
+                    return item.date === element && item.category === 'restaurants'
+                })
+            })
+            const summedRestaurantsExpenses = separatedRestaurantsExpenses.map(element => {
+                return element.reduce((acc, curr) => {
+                    return acc + +curr.amount
+                }, 0)
+            })
+            setRestaurantsExpenses(summedRestaurantsExpenses)
+            const separatedOtherExpenses = dates.map(element => {
+                return res.data.filter(item => {
+                    return item.date === element && item.category === 'other'
+                })
+            })
+            const summedOtherExpenses = separatedOtherExpenses.map(element => {
+                return element.reduce((acc, curr) => {
+                    return acc + +curr.amount
+                }, 0)
+            })
+            setOtherExpenses(summedOtherExpenses)
         })
     }
 
@@ -82,6 +147,7 @@ const Analysis = (props) => {
                     <LineDisplay
                         dates={dates} 
                         budget={allBudget}
+                        expenses={allExpenses}
                         backgroundColor='#F1F1F1'
                         borderColor='#F1F1F1'
                         name='All Budget'
@@ -93,6 +159,7 @@ const Analysis = (props) => {
                     <LineDisplay
                         dates={dates}
                         budget={groceries}
+                        expenses={groceryExpenses}
                         backgroundColor='#DB0000'
                         borderColor='#DB0000'
                         name='Groceries'
@@ -104,6 +171,7 @@ const Analysis = (props) => {
                     <LineDisplay
                         dates={dates} 
                         budget={gas}
+                        expenses={gasExpenses}
                         backgroundColor='#00A4E7'
                         borderColor='#00A4E7'
                         name='Gas'
@@ -115,6 +183,7 @@ const Analysis = (props) => {
                     <LineDisplay
                         dates={dates} 
                         budget={entertainment}
+                        expenses={entertainmentExpenses}
                         backgroundColor='#82EA00'
                         borderColor='#82EA00'
                         name='Entertainment'
@@ -126,6 +195,7 @@ const Analysis = (props) => {
                     <LineDisplay 
                         dates={dates}
                         budget={restaurants}
+                        expenses={restaurantsExpenses}
                         backgroundColor='#FFC247'
                         borderColor='#FFC247'
                         name='Restaurants'
@@ -137,6 +207,7 @@ const Analysis = (props) => {
                     <LineDisplay
                         dates={dates} 
                         budget={other}
+                        expenses={otherExpenses}
                         backgroundColor='#C55BFF'
                         borderColor='#C55BFF'
                         name='Other'

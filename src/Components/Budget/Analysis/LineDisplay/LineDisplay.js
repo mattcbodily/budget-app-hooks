@@ -19,6 +19,13 @@ const LineDisplay = (props) => {
                         backgroundColor: props.backgroundColor,
                         borderColor: props.borderColor,
                         data: props.budget
+                    }, 
+                    {
+                        label: 'All Expenses',
+                        fill: false,
+                        backgroundColor: props.backgroundColor,
+                        borderColor: props.borderColor,
+                        data: props.expenses
                     }]
                 }}
                 options={{
