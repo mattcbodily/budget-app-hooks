@@ -128,7 +128,7 @@ const BudgetProgress = (props) => {
                 {expenseModal
                 ? <ExpenseModal
                     user={user}
-                    budget={budget}
+                    budget={budget[budgetIndex]}
                     toggle={expenseModalToggle}
                     expenses={handleGetUserExpenses}/>
                 : null}

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import LineDisplay from './LineDisplay/LineDisplay';
+import Averages from './Averages/Averages';
 
 const Analysis = (props) => {
     const [user, setUser] = useState({})
@@ -144,75 +145,105 @@ const Analysis = (props) => {
         switch(step){
             case 0:
                 return (
-                    <LineDisplay
-                        dates={dates} 
-                        budget={allBudget}
-                        expenses={allExpenses}
-                        backgroundColor='#F1F1F1'
-                        borderColor='#F1F1F1'
-                        name='All Budget'
-                        incrementStep={incrementStep}
-                        decrementStep={decrementStep}/>
+                    <div>
+                        <LineDisplay
+                            dates={dates} 
+                            budget={allBudget}
+                            expenses={allExpenses}
+                            backgroundColor='#F1F1F1'
+                            borderColor='#F1F1F1'
+                            name='All Budget'
+                            incrementStep={incrementStep}
+                            decrementStep={decrementStep}/>
+                        <Averages 
+                            budget={allBudget}
+                            expenses={allExpenses}/>
+                    </div>
                 )
             case 1:
                 return (
-                    <LineDisplay
-                        dates={dates}
-                        budget={groceries}
-                        expenses={groceryExpenses}
-                        backgroundColor='#DB0000'
-                        borderColor='#DB0000'
-                        name='Groceries'
-                        incrementStep={incrementStep}
-                        decrementStep={decrementStep}/>
+                    <div>
+                        <LineDisplay
+                            dates={dates}
+                            budget={groceries}
+                            expenses={groceryExpenses}
+                            backgroundColor='#DB0000'
+                            borderColor='#DB0000'
+                            name='Groceries'
+                            incrementStep={incrementStep}
+                            decrementStep={decrementStep}/>
+                        <Averages 
+                            budget={groceries}
+                            expenses={groceryExpenses}/>
+                    </div>
                 )
             case 2:
                 return (
-                    <LineDisplay
-                        dates={dates} 
-                        budget={gas}
-                        expenses={gasExpenses}
-                        backgroundColor='#00A4E7'
-                        borderColor='#00A4E7'
-                        name='Gas'
-                        incrementStep={incrementStep}
-                        decrementStep={decrementStep}/>
+                    <div>
+                        <LineDisplay
+                            dates={dates} 
+                            budget={gas}
+                            expenses={gasExpenses}
+                            backgroundColor='#00A4E7'
+                            borderColor='#00A4E7'
+                            name='Gas'
+                            incrementStep={incrementStep}
+                            decrementStep={decrementStep}/>
+                        <Averages 
+                            budget={gas}
+                            expenses={gasExpenses}/>
+                    </div>
                 )
             case 3:
                 return (
-                    <LineDisplay
-                        dates={dates} 
-                        budget={entertainment}
-                        expenses={entertainmentExpenses}
-                        backgroundColor='#82EA00'
-                        borderColor='#82EA00'
-                        name='Entertainment'
-                        incrementStep={incrementStep}
-                        decrementStep={decrementStep}/>
+                    <div>
+                        <LineDisplay
+                            dates={dates} 
+                            budget={entertainment}
+                            expenses={entertainmentExpenses}
+                            backgroundColor='#82EA00'
+                            borderColor='#82EA00'
+                            name='Entertainment'
+                            incrementStep={incrementStep}
+                            decrementStep={decrementStep}/>
+                        <Averages 
+                            budget={entertainment}
+                            expenses={entertainmentExpenses}/>
+                    </div>
                 )
             case 4:
                 return (
-                    <LineDisplay 
-                        dates={dates}
-                        budget={restaurants}
-                        expenses={restaurantsExpenses}
-                        backgroundColor='#FFC247'
-                        borderColor='#FFC247'
-                        name='Restaurants'
-                        incrementStep={incrementStep}
-                        decrementStep={decrementStep}/>
+                    <div>
+                        <LineDisplay 
+                            dates={dates}
+                            budget={restaurants}
+                            expenses={restaurantsExpenses}
+                            backgroundColor='#FFC247'
+                            borderColor='#FFC247'
+                            name='Restaurants'
+                            incrementStep={incrementStep}
+                            decrementStep={decrementStep}/>
+                        <Averages 
+                            budget={restaurants}
+                            expenses={restaurantsExpenses}/>
+                    </div>
                 )
             case 5:
                 return (
-                    <LineDisplay
-                        dates={dates} 
-                        budget={other}
-                        expenses={otherExpenses}
-                        backgroundColor='#C55BFF'
-                        borderColor='#C55BFF'
-                        name='Other'
-                        incrementStep={incrementStep}
-                        decrementStep={decrementStep}/>
+                    <div>
+                        <LineDisplay
+                            dates={dates} 
+                            budget={other}
+                            expenses={otherExpenses}
+                            backgroundColor='#C55BFF'
+                            borderColor='#C55BFF'
+                            name='Other'
+                            incrementStep={incrementStep}
+                            decrementStep={decrementStep}/>
+                        <Averages 
+                            budget={other}
+                            expenses={otherExpenses}/>
+                    </div>
                 )
             default:
                 return

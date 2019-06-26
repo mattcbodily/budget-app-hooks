@@ -9,10 +9,9 @@ const ExpenseModal = (props) => {
 
     const handleAddExpense = () => {
         let today = new Date();
-        let dd = today.getDate();
         let mm = today.getMonth()+1;
         let yyyy = today.getFullYear();
-        today = mm + '/' + dd + '/' + yyyy;
+        today = mm + '/' + yyyy;
 
         let expenseObj = {
             user_id: props.user.user_id,
@@ -20,11 +19,11 @@ const ExpenseModal = (props) => {
             expense_name: expenseName,
             category: category,
             amount: parseInt(expenseAmount),
-            date: today
+            date: props.budget.date
         }
         axios.post('/api/expense', expenseObj)
         .then(res => {
-            props.expenses(props.budget.budget_id);
+            props.expenses(props.user.user_id);
             props.toggle();
         })
     }
