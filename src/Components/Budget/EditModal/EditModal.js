@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {Background, Modal, H4, H5, Input, Button} from './EditModalStyles';
-import { removeProperties } from '@babel/types';
 
 const EditModal = (props) => {
-    // const [budget, setBudget] = useState('')
     const [groceries, setGroceries] = useState('')
     const [gas, setGas] = useState('')
     const [entertainment, setEntertainment] = useState('')
@@ -21,7 +19,6 @@ const EditModal = (props) => {
         setEntertainment(props.budget.entertainment)
         setRestaurants(props.budget.restaurants)
         setOther(props.budget.other)
-        // setBudget(groceries + gas + entertainment + restaurants + other)
     }
 
     const budgetTotal = (parseInt(groceries) + parseInt(gas) + parseInt(entertainment) + parseInt(restaurants) + parseInt(other))

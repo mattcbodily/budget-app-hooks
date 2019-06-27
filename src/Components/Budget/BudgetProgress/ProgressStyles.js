@@ -16,6 +16,7 @@ export const ChartsWrapper = styled.div`
     height: 140px;
     width: 140px;
     margin-bottom: 25px;
+    position: static;
 `
 
 export const H6 = styled.h6`
@@ -39,7 +40,7 @@ export const BudgetNumber = styled.span`
     font-size: 17px;
     font-weight: 300;
     position: fixed;
-    top: 160px;
+    top: 180px;
     left: 65px;
 `
 
@@ -47,7 +48,7 @@ export const GroceryNumber = styled.span`
     font-size: 17px;
     font-weight: 300;
     position: fixed;
-    top: 160px;
+    top: 180px;
     right: 70px;
 `
 

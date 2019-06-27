@@ -9,7 +9,7 @@ library.add(faChevronLeft, faChevronRight)
 const ChartDisplay = (props) => {
     return(
         <div>
-            <H4><FontAwesomeIcon icon='chevron-left' onClick={props.incrementIndex}/>Your Budget: {props.budget.date}<FontAwesomeIcon icon='chevron-right' onClick={props.decrementIndex}/></H4>
+            <H4><FontAwesomeIcon icon='chevron-left' onClick={props.incrementIndex} style={{fontSize: '22px', marginRight: '5px'}}/>Your Budget: {props.budget.date}<FontAwesomeIcon icon='chevron-right' onClick={props.decrementIndex} style={{fontSize: '22px', marginLeft: '5px'}}/></H4>
             <ChartsContainer>
                 <ChartsWrapper>
                     <H6>All Budget</H6>
