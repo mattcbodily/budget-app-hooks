@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Header from './../../Header/Header';
 import {Doughnut} from 'react-chartjs-2';
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -177,6 +178,7 @@ const BudgetPlanner = (props) => {
     const budgetRemaining = (budget - groceries - gas - entertainment - restaurants - other);
     return (
         <div>
+            <Header />
             <H4>Plan your Budget</H4>
             <ChartContainer>
                 <Doughnut 

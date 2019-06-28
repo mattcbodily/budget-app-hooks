@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import Header from './../../Header/Header';
 import ExpenseModal from '../ExpenseModal/ExpenseModal';
 import EditModal from './../EditModal/EditModal';
 import ChartDisplay from '../ChartDisplay/ChartDisplay';
@@ -181,6 +182,7 @@ const BudgetProgress = (props) => {
 
     return (
         <div>
+            <Header />
             {renderBudget(budgetList)}
             <Link to='/analysis'>Analysis</Link>
         </div>

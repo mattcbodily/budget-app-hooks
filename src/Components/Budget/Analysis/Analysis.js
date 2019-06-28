@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import Header from './../../Header/Header';
 import LineDisplay from './LineDisplay/LineDisplay';
 import Averages from './Averages/Averages';
 
@@ -252,6 +253,7 @@ const Analysis = (props) => {
 
     return(
         <div>
+            <Header />
             {displayData()}
         </div>
     )

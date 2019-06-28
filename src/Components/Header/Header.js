@@ -1,8 +1,13 @@
 import React from 'react';
+import PiggyBank from './../Authentication/assets/piggy_bank.png';
+import {Div, Img, Span} from './HeaderStyles';
 
 const Header = (props) => {
     return (
-        <div>Haloo</div>
+        <Div>
+            <Img src={PiggyBank} alt='Piggy Bank Logo' />
+            <Span>Piggy Bank</Span>
+        </Div>
     )
 }
 
