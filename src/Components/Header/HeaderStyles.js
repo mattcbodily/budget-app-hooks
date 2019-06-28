@@ -4,6 +4,8 @@ export const Div = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
+    padding-top: 5px;
 `
 
 export const Img = styled.img`

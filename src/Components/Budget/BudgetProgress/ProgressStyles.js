@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const H4 = styled.h4`
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 300;
-    margin: 25px 0px;
+    margin: 10px 0px;
 `
 
 export const ChartsContainer = styled.div`

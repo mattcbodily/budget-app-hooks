@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
 import Header from './../../Header/Header';
-import ExpenseModal from '../ExpenseModal/ExpenseModal';
-import EditModal from './../EditModal/EditModal';
+import Menu from './../Menu/Menu';
 import ChartDisplay from '../ChartDisplay/ChartDisplay';
 import {ButtonContainer} from './ProgressStyles';
 import {library} from '@fortawesome/fontawesome-svg-core'
@@ -15,8 +13,6 @@ const BudgetProgress = (props) => {
     const [user, setUser] = useState({})
     const [budget, setBudget] = useState([])
     const [expenses, setExpenses] = useState([])
-    const [expenseModal, setExpenseModal] = useState(false)
-    const [editModal, setEditModal] = useState(false)
     const [budgetIndex, setBudgetIndex] = useState(0)
 
     useEffect(() => {
@@ -71,14 +67,6 @@ const BudgetProgress = (props) => {
         })
     }
 
-    const expenseModalToggle = () => {
-        setExpenseModal(!expenseModal)
-    }
-
-    const editModalToggle = () => {
-        setEditModal(!editModal)
-    }
-
     const incrementIndex = () => {
         if(budgetIndex < budget.length - 1){
             setBudgetIndex(budgetIndex + 1)
@@ -123,27 +111,6 @@ const BudgetProgress = (props) => {
                     entertainmentTotal={entertainmentTotal}
                     restaurantsTotal={restaurantsTotal}
                     otherTotal={otherTotal} />
-                <ButtonContainer>
-                    <FontAwesomeIcon icon='plus' onClick={expenseModalToggle} style={{color: 'white', fontSize: '30px'}}/>
-                </ButtonContainer>
-                {expenseModal
-                ? <ExpenseModal
-                    user={user}
-                    budget={budget[budgetIndex]}
-                    toggle={expenseModalToggle}
-                    expenses={handleGetUserExpenses}/>
-                : null}
-                <ButtonContainer>
-                    <FontAwesomeIcon icon='plus' onClick={editModalToggle} style={{color: 'white', fontSize: '30px'}}/>
-                </ButtonContainer>
-                {editModal
-                ? <EditModal
-                    user={user}
-                    budget={element}
-                    getBudget={handleGetUserBudget}
-                    toggle={editModalToggle}/>
-                : null
-                }
             </div>
         )
     })
@@ -184,7 +151,11 @@ const BudgetProgress = (props) => {
         <div>
             <Header />
             {renderBudget(budgetList)}
-            <Link to='/analysis'>Analysis</Link>
+            <Menu 
+                user={user}
+                budget={budget[budgetIndex]}
+                getBudget={handleGetUserBudget}
+                expenses={handleGetUserExpenses}/>
         </div>
     )
 }
