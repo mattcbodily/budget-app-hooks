@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import ExpenseModal from '../ExpenseModal/ExpenseModal'
 import EditModal from '../EditModal/EditModal'
+import './Menu.css'
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faEdit, faPlus, faChartBar} from '@fortawesome/free-solid-svg-icons'
@@ -22,9 +23,9 @@ const Menu = (props) => {
 
     return (
         <Container>
-            <FontAwesomeIcon icon='edit' onClick={editModalToggle}/>
-            <FontAwesomeIcon icon='plus' onClick={expenseModalToggle}/>
-            <Link to='/analysis'><FontAwesomeIcon icon='chart-bar' /></Link>
+            <FontAwesomeIcon icon='edit' onClick={editModalToggle} className='edit-button'/>
+            <FontAwesomeIcon icon='plus' onClick={expenseModalToggle} className='add-button'/>
+            <Link to='/analysis'><FontAwesomeIcon icon='chart-bar' className='analysis-button'/></Link>
             {expenseModal
                 ? <ExpenseModal
                     user={props.user}

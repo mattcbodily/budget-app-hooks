@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const Div = styled.div`
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    padding-top: 5px;
+    border-bottom: 1px solid gray;
 `
 
 export const Img = styled.img`
