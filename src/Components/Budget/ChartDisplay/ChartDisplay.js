@@ -20,7 +20,8 @@ const ChartDisplay = (props) => {
                         data={{
                             datasets: [{
                                 label: 'Budget',
-                                backgroundColor: ['#FF4242', '#FFAAAA'],
+                                backgroundColor: ['#EC6682', '#ED254E'],
+                                borderColor: '#F2F2F2',
                                 data: [props.budgetRemaining, props.totalExpenses]
                             }]
                         }}
@@ -40,6 +41,7 @@ const ChartDisplay = (props) => {
                             datasets: [{
                                 label: 'Groceries',
                                 backgroundColor: ['#FF8A8A', '#DB0000'],
+                                borderColor: '#F2F2F2',
                                 data: [(props.budget.groceries - props.groceriesTotal), props.groceriesTotal]
                             }]
                         }}
@@ -59,6 +61,7 @@ const ChartDisplay = (props) => {
                             datasets: [{
                                 label: 'Gas',
                                 backgroundColor: ['#7EC7E6', '#00A4E7'],
+                                borderColor: '#F2F2F2',
                                 data: [(props.budget.gas - props.gasTotal), props.gasTotal]
                             }]
                         }}
@@ -78,6 +81,7 @@ const ChartDisplay = (props) => {
                             datasets: [{
                                 label: 'Entertainment',
                                 backgroundColor: ['#BFE98B', '#82EA00'],
+                                borderColor: '#F2F2F2',
                                 data: [(props.budget.entertainment - props.entertainmentTotal), props.entertainmentTotal]
                             }]
                         }}
@@ -97,6 +101,7 @@ const ChartDisplay = (props) => {
                             datasets: [{
                                 label: 'Restaurants',
                                 backgroundColor: ['#FFE5B0', '#FFC247'],
+                                borderColor: '#F2F2F2',
                                 data: [(props.budget.restaurants - props.restaurantsTotal), props.restaurantsTotal]
                             }]
                         }}
@@ -116,6 +121,7 @@ const ChartDisplay = (props) => {
                             datasets: [{
                                 label: 'Other',
                                 backgroundColor: ['#E3B0FF', '#C55BFF'],
+                                borderColor: '#F2F2F2',
                                 data: [(props.budget.other - props.otherTotal), props.otherTotal]
                             }]
                         }}

@@ -5,8 +5,6 @@ export const Div = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
-    border-bottom: 1px solid gray;
 `
 
 export const Img = styled.img`

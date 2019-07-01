@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
+export const LandingContainer = styled.div`
+    box-sizing: border-box;
+    padding-top: 75px;
+`
+
 export const H4 = styled.h4`
-    margin-top: 75px;
     margin-bottom: 30px;
     font-size: 25px;
     font-weight: 300;

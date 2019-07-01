@@ -25,7 +25,7 @@ export const Over = styled.span`
 export const Under = styled.span`
     font-size: 20px;
     font-weight: 300;
-    color: #82EA00;
+    color: #45B81B;
 `
 
 export const Menu = styled.footer`
