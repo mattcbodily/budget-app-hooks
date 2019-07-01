@@ -3,16 +3,22 @@ import axios from 'axios';
 import Header from './../../Header/Header';
 import Menu from './../Menu/Menu';
 import ChartDisplay from '../ChartDisplay/ChartDisplay';
+import LoadingModal from './../LoadingModal/LoadingModal';
 
 const BudgetProgress = (props) => {
     const [user, setUser] = useState({})
     const [budget, setBudget] = useState([])
     const [expenses, setExpenses] = useState([])
     const [budgetIndex, setBudgetIndex] = useState(0)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         handleSessionUser()
     }, [])
+
+    const handleLoading = () => {
+        setLoading(false)
+    }
 
     const handleSessionUser = () => {
         axios.get('/auth/session-user')
@@ -60,6 +66,7 @@ const BudgetProgress = (props) => {
         .then((res) => {
             setExpenses(res.data)
         })
+        handleLoading()
     }
 
     const incrementIndex = () => {
@@ -145,7 +152,11 @@ const BudgetProgress = (props) => {
     return (
         <div>
             <Header />
-            {renderBudget(budgetList)}
+            {loading
+            ? <LoadingModal />
+            : <div>
+                {renderBudget(budgetList)}
+              </div>}
             <Menu 
                 user={user}
                 budget={budget[budgetIndex]}

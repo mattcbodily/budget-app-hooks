@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import Header from './../../Header/Header'
 import LineDisplay from './LineDisplay/LineDisplay'
 import Averages from './Averages/Averages'
+import LoadingModal from './../LoadingModal/LoadingModal'
 import {Menu} from './AnalysisStyles'
 
 const Analysis = (props) => {
@@ -22,10 +23,15 @@ const Analysis = (props) => {
     const [restaurantsExpenses, setRestaurantsExpenses] = useState([])
     const [otherExpenses, setOtherExpenses] = useState([])
     const [step, setStep] = useState(0)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         handleSessionUser()
     }, [])
+
+    const handleLoading = () => {
+        setLoading(false)
+    }
 
     const handleSessionUser = () => {
         axios.get('/auth/session-user')
@@ -56,8 +62,8 @@ const Analysis = (props) => {
         })
     }
 
-    const handleUserExpenses = (id, dates) => {
-        axios.get(`/api/expenses/${id}`)
+    const handleUserExpenses = async(id, dates) => {
+        await axios.get(`/api/expenses/${id}`)
         .then(res => {
             const separatedAllExpenses = dates.map(element => {
                 return res.data.filter(item => {
@@ -126,6 +132,7 @@ const Analysis = (props) => {
             })
             setOtherExpenses(summedOtherExpenses)
         })
+        handleLoading()
     }
 
     const incrementStep = () => {
@@ -268,7 +275,11 @@ const Analysis = (props) => {
     return(
         <div>
             <Header />
-            {displayData()}
+            {loading
+            ? <LoadingModal />
+            :<div>
+                {displayData()}
+             </div>}
             <Menu><Link to='/budget' style={{color: 'black', textDecoration: 'none', fontSize: '18px'}}>Back</Link></Menu>
         </div>
     )

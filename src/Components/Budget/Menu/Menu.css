@@ -1,12 +1,38 @@
 .edit-button{
     font-size: 20px;
+    color: #BDBDBD;
+}
+
+.edit-button:hover{
+    color: black;
+}
+
+.edit-button:active{
+    color: #BDBDBD;
 }
 
 .add-button{
     font-size: 20px;
+    color: #BDBDBD;
+}
+
+.add-button:hover{
+    color: black;
+}
+
+.add-button:active{
+    color: #BDBDBD;
 }
 
 .analysis-button{
     font-size: 20px;
+    color: #BDBDBD;
+}
+
+.analysis-button:hover{
     color: black;
+}
+
+.analysis-button:active{
+    color: #BDBDBD;
 }
