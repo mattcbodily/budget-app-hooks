@@ -1,0 +1,13 @@
+.back-link{
+    color: #BDBDBD; 
+    text-decoration: none; 
+    font-size: 18px;
+}
+
+.back-link:hover{
+    color: black;
+}
+
+.back-link:active{
+    color: #BDBDBD;
+}

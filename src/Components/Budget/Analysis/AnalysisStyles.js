@@ -33,7 +33,7 @@ export const Menu = styled.footer`
     width: 100%;
     position: fixed;
     bottom: 0;
-    border-top: 1px solid gray;
+    border-top: 1px solid lightgray;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -9,6 +9,6 @@ export const Container = styled.div`
     justify-content: space-evenly;
     align-items: center;
     box-sizing: border-box;
-    border-top: 1px solid gray;
+    border-top: 1px solid lightgray;
     
 `

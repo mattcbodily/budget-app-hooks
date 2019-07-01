@@ -5,6 +5,7 @@ import Header from './../../Header/Header'
 import LineDisplay from './LineDisplay/LineDisplay'
 import Averages from './Averages/Averages'
 import LoadingModal from './../LoadingModal/LoadingModal'
+import './Analysis.css'
 import {Menu} from './AnalysisStyles'
 
 const Analysis = (props) => {
@@ -280,7 +281,7 @@ const Analysis = (props) => {
             :<div>
                 {displayData()}
              </div>}
-            <Menu><Link to='/budget' style={{color: 'black', textDecoration: 'none', fontSize: '18px'}}>Back</Link></Menu>
+            <Menu><Link to='/budget' className='back-link'>Back</Link></Menu>
         </div>
     )
 }
