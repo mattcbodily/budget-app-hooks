@@ -27,3 +27,14 @@ export const Under = styled.span`
     font-weight: 300;
     color: #82EA00;
 `
+
+export const Menu = styled.footer`
+    height: 40px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    border-top: 1px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`

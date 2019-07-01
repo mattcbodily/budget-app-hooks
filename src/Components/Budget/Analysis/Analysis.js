@@ -1,8 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
-import Header from './../../Header/Header';
-import LineDisplay from './LineDisplay/LineDisplay';
-import Averages from './Averages/Averages';
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
+import {Link} from 'react-router-dom'
+import Header from './../../Header/Header'
+import LineDisplay from './LineDisplay/LineDisplay'
+import Averages from './Averages/Averages'
+import {Menu} from './AnalysisStyles'
 
 const Analysis = (props) => {
     const [user, setUser] = useState({})
@@ -255,6 +257,7 @@ const Analysis = (props) => {
         <div>
             <Header />
             {displayData()}
+            <Menu><Link to='/budget' style={{color: 'black', textDecoration: 'none', fontSize: '18px'}}>Back</Link></Menu>
         </div>
     )
 }
