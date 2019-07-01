@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {H4, P} from './../AnalysisStyles';
+import {H4, P, Over, Under} from './../AnalysisStyles';
 
 const Averages = (props) => {
     const [difference, setDifference] = useState(0)
@@ -34,8 +34,10 @@ const Averages = (props) => {
         <div>
             <H4>Average Expenses Per Month</H4>
             <P>${expenses}</P>
-            <H4>Average Over/Under Budget</H4>
-            <P>${difference}</P>
+            <H4>Average <Over>Over</Over>/<Under>Under</Under> Budget</H4>
+            {(difference > 0)
+            ? <Under>${difference}</Under>
+            : <Over>${difference}</Over>}
         </div>
     )
 }

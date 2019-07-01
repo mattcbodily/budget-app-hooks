@@ -1,6 +1,6 @@
 import React from 'react';
 import {Doughnut} from 'react-chartjs-2';
-import {H4, H6, ChartsContainer, ChartsWrapper, BudgetNumber, GroceryNumber, GasNumber, ENumber, RestaurantsNumber, OtherNumber} from '../BudgetProgress/ProgressStyles';
+import {H4, H6, ChartsContainer, ChartsWrapper, BudgetNumber} from '../BudgetProgress/ProgressStyles';
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons';

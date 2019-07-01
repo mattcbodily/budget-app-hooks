@@ -3,11 +3,6 @@ import axios from 'axios';
 import Header from './../../Header/Header';
 import Menu from './../Menu/Menu';
 import ChartDisplay from '../ChartDisplay/ChartDisplay';
-import {ButtonContainer} from './ProgressStyles';
-import {library} from '@fortawesome/fontawesome-svg-core'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faPlus} from '@fortawesome/free-solid-svg-icons';
-library.add(faPlus)
 
 const BudgetProgress = (props) => {
     const [user, setUser] = useState({})

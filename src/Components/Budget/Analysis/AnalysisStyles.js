@@ -12,6 +12,18 @@ export const P = styled.p`
 `
 
 export const Span = styled.span`
+    font-size: 23px;
+    font-weight: 300;
+`
+
+export const Over = styled.span`
     font-size: 20px;
     font-weight: 300;
+    color: #DB0000;
+`
+
+export const Under = styled.span`
+    font-size: 20px;
+    font-weight: 300;
+    color: #82EA00;
 `

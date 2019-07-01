@@ -9,7 +9,7 @@ library.add(faChevronLeft, faChevronRight)
 const LineDisplay = (props) => {
     return(
         <div>
-            <FontAwesomeIcon icon='chevron-left' onClick={props.decrementStep} style={{fontSize: '18px', marginRight: '5px'}}/>
+            <FontAwesomeIcon icon='chevron-left' onClick={props.decrementStep} style={{fontSize: '18px', marginRight: '5px', marginTop: '15px'}}/>
             <Span>{props.name}</Span>
             <FontAwesomeIcon icon='chevron-right' onClick={props.incrementStep} style={{fontSize: '18px', marginLeft: '5px'}}/>
             <Line 
