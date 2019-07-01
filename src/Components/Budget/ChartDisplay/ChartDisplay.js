@@ -32,7 +32,7 @@ const ChartDisplay = (props) => {
                 </ChartsWrapper>
                 <ChartsWrapper>
                     <H6>Groceries</H6>
-                    <GroceryNumber>${props.budget.groceries - props.groceriesTotal}</GroceryNumber>
+                    <BudgetNumber>${props.budget.groceries - props.groceriesTotal}</BudgetNumber>
                     <Doughnut
                         height={1}
                         width={1} 
@@ -51,7 +51,7 @@ const ChartDisplay = (props) => {
                 </ChartsWrapper>
                 <ChartsWrapper>
                     <H6>Gas</H6>
-                    <GasNumber>${props.budget.gas - props.gasTotal}</GasNumber>
+                    <BudgetNumber>${props.budget.gas - props.gasTotal}</BudgetNumber>
                     <Doughnut
                         height={1}
                         width={1} 
@@ -70,7 +70,7 @@ const ChartDisplay = (props) => {
                 </ChartsWrapper>
                 <ChartsWrapper>
                     <H6>Entertainment</H6>
-                    <ENumber>${props.budget.entertainment - props.entertainmentTotal}</ENumber>
+                    <BudgetNumber>${props.budget.entertainment - props.entertainmentTotal}</BudgetNumber>
                     <Doughnut
                         height={1}
                         width={1} 
@@ -89,7 +89,7 @@ const ChartDisplay = (props) => {
                 </ChartsWrapper>
                 <ChartsWrapper>
                     <H6>Restaurants</H6>
-                    <RestaurantsNumber>${props.budget.restaurants - props.restaurantsTotal}</RestaurantsNumber>
+                    <BudgetNumber>${props.budget.restaurants - props.restaurantsTotal}</BudgetNumber>
                     <Doughnut
                         height={1}
                         width={1} 
@@ -108,7 +108,7 @@ const ChartDisplay = (props) => {
                 </ChartsWrapper>
                 <ChartsWrapper>
                     <H6>Other</H6>
-                    <OtherNumber>${props.budget.other - props.otherTotal}</OtherNumber>
+                    <BudgetNumber>${props.budget.other - props.otherTotal}</BudgetNumber>
                     <Doughnut
                         height={1}
                         width={1} 

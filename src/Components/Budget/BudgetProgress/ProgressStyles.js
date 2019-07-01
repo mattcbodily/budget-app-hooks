@@ -16,7 +16,7 @@ export const ChartsWrapper = styled.div`
     height: 140px;
     width: 140px;
     margin-bottom: 25px;
-    position: static;
+    position: relative;
 `
 
 export const H6 = styled.h6`
@@ -36,12 +36,14 @@ export const ButtonContainer = styled.div`
     display: inline-block;
 `
 
-export const BudgetNumber = styled.span`
+export const BudgetNumber = styled.p`
+    width: 140px;
     font-size: 17px;
     font-weight: 300;
-    position: fixed;
-    top: 180px;
-    left: 65px;
+    position: absolute;
+    top: 82px;
+    left: -2px;
+    margin: 0px;
 `
 
 export const GroceryNumber = styled.span`
