@@ -39,6 +39,7 @@ const BudgetPlanner = (props) => {
         handleSessionUser()
     }, [])
 
+    //this function grabs the user in the session, and then sets it to state to use later
     const handleSessionUser = () => {
         axios.get('/auth/session-user')
         .then(res => {
@@ -49,6 +50,8 @@ const BudgetPlanner = (props) => {
         )
     }
 
+    // this function creates a new budget, first by getting the date(in mm/yyyy format), and then
+    // sending down the data from the user input
     const addMonthlyBudget = () => {
         let today = new Date();
         let mm = today.getMonth()+1;
@@ -70,6 +73,10 @@ const BudgetPlanner = (props) => {
         })
     }
 
+    //this component is set up with steps.  The first is to have the user set the full budget,
+    //the second is for them to divvy the budget up into different categories.  Display changes
+    //based on the step value on state, and can be switched with these functions.  The displays
+    //are shown in the showStep function
     const decrementStep = () => {
         setStep(step - 1)
     }

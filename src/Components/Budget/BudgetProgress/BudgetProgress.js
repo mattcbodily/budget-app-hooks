@@ -16,6 +16,8 @@ const BudgetProgress = (props) => {
         handleSessionUser()
     }, [])
 
+    //this function handles switching from the loading animation to the
+    //actual view, once the data finishes loading
     const handleLoading = () => {
         setLoading(false)
     }
@@ -31,6 +33,9 @@ const BudgetProgress = (props) => {
         // )
     }
 
+    //this function gets all the budget data from the user, and then checks the date
+    //of the most recent budget.  If the the month has changed, a new budget is created
+    //with the most recent budgets values
     const handleGetUserBudget = async(id) => {
         let today = new Date();
         let mm = today.getMonth()+1;
@@ -61,6 +66,7 @@ const BudgetProgress = (props) => {
         })
     }
 
+    //this function grabs all of the users expenses for all budgets
     const handleGetUserExpenses = async(id) => {
         await axios.get(`/api/expenses/${id}`)
         .then((res) => {
@@ -69,6 +75,9 @@ const BudgetProgress = (props) => {
         handleLoading()
     }
 
+    //display for each budget is handled with a switch statement. These functions 
+    //handle the step, and make sure that steps don't go higher than the
+    //length of the budget array on state.
     const incrementIndex = () => {
         if(budgetIndex < budget.length - 1){
             setBudgetIndex(budgetIndex + 1)
@@ -85,6 +94,8 @@ const BudgetProgress = (props) => {
         }
     }
     
+    //This function separates the expenses by category and by budget, and then uses the reduce method
+    //to get the total of expenses for that category for that budget
     const budgetList = budget.map((element, i) => {
         let groceries = expenses.filter(element => element.category === 'groceries' && element.budget_id === budget[i].budget_id);
         let gas = expenses.filter(element => element.category === 'gas' && element.budget_id === budget[i].budget_id);
@@ -117,6 +128,7 @@ const BudgetProgress = (props) => {
         )
     })
     
+    //this is the switch statement that handles which budget to display, up to 12(for one years worth of budgets)
     const renderBudget = (arr) => {
         switch(budgetIndex){
             case 0:
@@ -152,6 +164,7 @@ const BudgetProgress = (props) => {
     return (
         <div>
             <Header />
+            {/* conditional rendering for the loading animation */}
             {loading
             ? <LoadingModal />
             : <div>

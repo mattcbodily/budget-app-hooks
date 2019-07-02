@@ -9,6 +9,8 @@ const Register = (props) => {
     const [password, setPassword] = useState('');
     const [verPassword, setVerPassword] = useState('');
 
+    //this function first checks if the the password and verPassword match, 
+    //and if they do, runs the axios request to create the user
     const handleRegister = () => {
         if(password !== verPassword){
             alert('Passwords do not Match')

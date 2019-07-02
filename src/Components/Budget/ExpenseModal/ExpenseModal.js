@@ -7,6 +7,9 @@ const ExpenseModal = (props) => {
     const [expenseName, setExpenseName] = useState('')
     const [expenseAmount, setExpenseAmount] = useState('')
 
+    //this handles adding an expense, by sending down the date
+    //in mm/yyyy format, and the sending the information to the
+    //backend
     const handleAddExpense = () => {
         let today = new Date();
         let mm = today.getMonth()+1;

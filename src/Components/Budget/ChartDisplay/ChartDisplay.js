@@ -7,6 +7,7 @@ import {faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 library.add(faChevronLeft, faChevronRight)
 
 const ChartDisplay = (props) => {
+    //this component handles the doughnut chart displays for the users budget
     return(
         <div>
             <H4><FontAwesomeIcon icon='chevron-left' onClick={props.incrementIndex} style={{fontSize: '19px', marginRight: '5px'}}/>Your Budget: {props.budget.date}<FontAwesomeIcon icon='chevron-right' onClick={props.decrementIndex} style={{fontSize: '19px', marginLeft: '5px'}}/></H4>

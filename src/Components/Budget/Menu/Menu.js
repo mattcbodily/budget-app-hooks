@@ -13,10 +13,12 @@ const Menu = (props) => {
     const [expenseModal, setExpenseModal] = useState(false)
     const [editModal, setEditModal] = useState(false)
 
+    //this handles whether or not the expense modal displays
     const expenseModalToggle = () => {
         setExpenseModal(!expenseModal)
     }
 
+    //this handles whether or not the edit modal displays
     const editModalToggle = () => {
         setEditModal(!editModal)
     }

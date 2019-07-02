@@ -14,10 +14,12 @@ const Login = (props) => {
         })
     }
 
+    
     return(
         <div>
             <Image src={logo} alt='Company Logo' />
             <H4>Piggy Bank</H4>
+            {/* inputs set to a max length of 40 to prevent endless typing into the inputs */}
             <Input 
                 value={email}
                 placeholder='Email'

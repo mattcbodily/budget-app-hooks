@@ -13,6 +13,8 @@ const EditModal = (props) => {
         budgetNumbers()
     }, [])
 
+    //this function takes the data of the budget that was passed down from the
+    //BudgetProgress component
     const budgetNumbers = async() => {
         setGroceries(props.budget.groceries)
         setGas(props.budget.gas)
@@ -23,6 +25,7 @@ const EditModal = (props) => {
 
     const budgetTotal = (parseInt(groceries) + parseInt(gas) + parseInt(entertainment) + parseInt(restaurants) + parseInt(other))
 
+    //this handles sending the updated budget information to the backend
     const updateBudget = () => {
         const newBudget = {
             budget: budgetTotal,
